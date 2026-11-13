@@ -1,0 +1,138 @@
+{
+  "measured": "13 November 2026",
+  "tool": "Lighthouse 12.8.2 (npx lighthouse@12)",
+  "settings": "mobile emulation 412x823, Lighthouse default simulated Slow 4G + 4x CPU slowdown",
+  "served_over": "local http server (python3 -m http.server) on the website/design-options folder",
+  "command": "npx lighthouse@12 http://127.0.0.1:8766/5/index.html --quiet --output=json --output-path=lighthouse-5.json --chrome-flags=\"--headless=new --no-sandbox --disable-gpu\"",
+  "note": "three runs per page; NOTES.md quotes the median run and the range",
+  "pages": {
+    "5": {
+      "median": {
+        "lcp_s": 1,
+        "cls": 0.001
+      },
+      "range": {
+        "lcp_s": [
+          0.9,
+          1.1
+        ],
+        "cls": [
+          0.001,
+          0.001
+        ]
+      },
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best_practices": 100,
+        "seo": 100
+      },
+      "lcp_element": "main#main > section.hero > div.wrap > p.hero-sub",
+      "runs": [
+        {
+          "lcp_element": "main#main > section.hero > div.wrap > p.hero-sub",
+          "file": "lighthouse-5-run1.json",
+          "lcp_s": 0.9,
+          "cls": 0.001,
+          "fcp_s": 0.9,
+          "tbt_ms": 0,
+          "speed_index_s": 0.9,
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100
+        },
+        {
+          "lcp_element": "main#main > section.hero > div.wrap > p.hero-sub",
+          "file": "lighthouse-5-run2.json",
+          "lcp_s": 1,
+          "cls": 0.001,
+          "fcp_s": 1,
+          "tbt_ms": 0,
+          "speed_index_s": 1,
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100
+        },
+        {
+          "lcp_element": "main#main > section.hero > div.wrap > p.hero-sub",
+          "file": "lighthouse-5-run3.json",
+          "lcp_s": 1.1,
+          "cls": 0.001,
+          "fcp_s": 1.1,
+          "tbt_ms": 0,
+          "speed_index_s": 1.1,
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100
+        }
+      ]
+    },
+    "6": {
+      "median": {
+        "lcp_s": 1.1,
+        "cls": 0.005
+      },
+      "range": {
+        "lcp_s": [
+          0.9,
+          1.1
+        ],
+        "cls": [
+          0.002,
+          0.011
+        ]
+      },
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best_practices": 100,
+        "seo": 100
+      },
+      "lcp_element": "main#main > section.hero > div.wrap > p.hero-sub",
+      "runs": [
+        {
+          "lcp_element": "main#main > section.hero > div.wrap > p.hero-sub",
+          "file": "lighthouse-6-run1.json",
+          "lcp_s": 0.9,
+          "cls": 0.002,
+          "fcp_s": 0.9,
+          "tbt_ms": 0,
+          "speed_index_s": 0.9,
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100
+        },
+        {
+          "lcp_element": "main#main > section.hero > div.wrap > p.hero-sub",
+          "file": "lighthouse-6-run2.json",
+          "lcp_s": 1.1,
+          "cls": 0.011,
+          "fcp_s": 1.1,
+          "tbt_ms": 0,
+          "speed_index_s": 1.1,
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100
+        },
+        {
+          "lcp_element": "main#main > section.hero > div.wrap > p.hero-sub",
+          "file": "lighthouse-6-run3.json",
+          "lcp_s": 1.1,
+          "cls": 0.005,
+          "fcp_s": 1.1,
+          "tbt_ms": 0,
+          "speed_index_s": 1.1,
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100
+        }
+      ]
+    }
+  }
+}

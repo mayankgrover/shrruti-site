@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
 <style>
   :root{
     --paper:#fbf7f0; --ink:#2b211c; --muted:#6b5c52; --clay:#a6573c; --clay-dark:#8a4429;
@@ -164,6 +165,13 @@
   .foot a:hover{color:var(--clay);text-decoration:underline}
   .foot .rule{border-top:1px solid var(--line);margin:2rem 0 1rem}
   .foot .legal{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;font-size:.8rem}
+  .foot .ai-mark{font-size:.84rem;color:var(--ink-2);max-width:78ch;margin:0 0 .9rem;padding:.7rem .85rem;border:1px solid var(--line);border-radius:8px;background:#fff}
+  /* Address line for readers without JavaScript (the content of a <noscript>
+     element is raw text when scripting is on, so it cannot carry the
+     data-clinic hooks). */
+  .nojs-note{display:none}
+  html:not(.js) .nojs-note{display:block}
+  .nojs-note p{margin:0;font-size:.92rem;color:var(--muted)}
 
   .mbar{display:none}
   @media (max-width:700px){
@@ -213,7 +221,7 @@
       </div>
       <aside class="hero-aside">
         <p><b>Qualifications</b>MBBS (University of Delhi / UCMS) &middot; MD Pathology (UCMS) &middot; Fellowship in Oncopathology (Rajiv Gandhi Cancer Institute &amp; Research Centre)</p>
-        <p><b>Where</b>In person at Synergy Acupuncture Clinic, Sector 112, Dwarka &mdash; and at Gajraj Hospital, Gurugram, 4&ndash;6&nbsp;PM.</p>
+        <p><b>Where</b>In person at Synergy Acupuncture Clinic, <span data-clinic="shortAddress">Sector 112, Dwarka</span> &mdash; and at <span data-clinic="hospital">Gajraj Hospital</span>, Gurugram, <span data-clinic="hospitalHours">4:00 PM &ndash; 6:00 PM</span>.</p>
         <p><b>English</b>Consultations are in English.</p>
       </aside>
     </div>
@@ -324,11 +332,13 @@
         <p data-clinic="address">Experion Windchants, Expressway, Choma, Block T, Sector 112, Dwarka, Gurugram, Haryana 122017</p>
         <p>Plus code <span data-clinic="plusCode">G298+88</span></p>
         <p><a class="btn btn-line" href="https://www.google.com/maps/place/Synergy+Acupuncture+clinic-+Dr.+Shruti+Grover/data=!4m2!3m1!1s0x0:0xa8672e827584b5e9" data-maps target="_blank" rel="noopener">Open in Google Maps</a></p>
-        <h3 style="margin-top:1.5rem">Gajraj Hospital</h3>
-        <p>Opposite Civil Hospital, Gurugram.</p>
-        <p><strong>Consulting hours: 4:00 PM &ndash; 6:00 PM.</strong></p>
+        <h3 style="margin-top:1.5rem" data-clinic="hospital">Gajraj Hospital</h3>
+        <p><span data-clinic="hospitalAddress">Opposite Civil Hospital, Gurugram</span>.</p>
+        <p><strong>Consulting hours: <span data-clinic="hospitalHours">4:00 PM &ndash; 6:00 PM</span>.</strong></p>
         <p><a href="tel:+917669140719" data-tel>Call +91 76691 40719</a></p>
-        <noscript><p>Synergy Acupuncture Clinic, Experion Windchants, Expressway, Choma, Block T, Sector 112, Dwarka, Gurugram, Haryana 122017. Plus code G298+88. Gajraj Hospital, opposite Civil Hospital, Gurugram, 4:00 PM to 6:00 PM.</p></noscript>
+        <div class="nojs-note">
+          <p><span data-clinic="name">Synergy Acupuncture Clinic</span>, <span data-clinic="address">Experion Windchants, Expressway, Choma, Block T, Sector 112, Dwarka, Gurugram, Haryana 122017</span>. Plus code <span data-clinic="plusCode">G298+88</span>. <span data-clinic="hospital">Gajraj Hospital</span>, <span data-clinic="hospitalAddress">Opposite Civil Hospital, Gurugram</span>, <span data-clinic="hospitalHours">4:00 PM &ndash; 6:00 PM</span>.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -358,7 +368,7 @@
       <div class="faq-item">
         <details>
           <summary><span>Where do you see patients, and how do I book?</span></summary>
-          <p>She sees patients in person at Synergy Acupuncture Clinic in Sector 112, Dwarka, and at Gajraj Hospital in Gurugram between 4:00 PM and 6:00 PM. Book on WhatsApp at +91 76691 40719 or use the form on this page &mdash; tell us your name, phone number and what you would like help with.</p>
+          <p>She sees patients in person at Synergy Acupuncture Clinic in <span data-clinic="shortAddress">Sector 112, Dwarka</span>, and at <span data-clinic="hospital">Gajraj Hospital</span> in Gurugram, <span data-clinic="hospitalHours">4:00 PM &ndash; 6:00 PM</span>. Book on WhatsApp at +91 76691 40719 or use the form on this page &mdash; tell us your name, phone number and what you would like help with.</p>
         </details>
       </div>
     </div>
@@ -370,7 +380,7 @@
       <h2 style="max-width:24ch">Come and see her in Dwarka</h2>
       <div class="book-grid">
         <div>
-          <p>Tell us what you would like help with, and we will confirm a slot on WhatsApp. Consultations are in person at Synergy Acupuncture Clinic, Sector 112, Dwarka.</p>
+          <p>Tell us what you would like help with, and we will confirm a slot on WhatsApp. Consultations are in person at Synergy Acupuncture Clinic, <span data-clinic="shortAddress">Sector 112, Dwarka</span>.</p>
           <p>
             <a class="btn btn-wa btn-block" href="https://wa.me/917669140719" data-wa rel="noopener">
               <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.25.69-1.43 1.32-1.98 1.37-.53.05-1.03.25-3.45-.72-2.9-1.16-4.74-4.2-4.88-4.4-.14-.19-1.15-1.53-1.15-2.92s.73-2.07.99-2.36c.26-.29.57-.36.76-.36l.54.01c.17 0 .41-.07.63.48.25.6.83 2.05.9 2.2.07.14.12.31.02.5-.09.19-.14.31-.28.48l-.42.49c-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.91 1.06.94 1.95 1.23 2.23 1.37.28.14.44.12.6-.07.17-.19.7-.82.88-1.1.19-.28.37-.23.62-.14.25.09 1.63.77 1.9.91.28.14.47.21.54.32.07.12.07.67-.18 1.36Z"/></svg>
@@ -435,8 +445,9 @@
       </div>
     </div>
     <div class="rule"></div>
+    <p class="ai-mark">Medical information on this page was written with AI assistance and is awaiting medical review by Dr. Shruti Grover, MBBS (University of Delhi), MD Pathology (UCMS), Fellowship in Oncopathology (RGCI). It is general information, not a diagnosis. Your own plan comes after a consultation.</p>
     <div class="legal">
-      <span>Medical content reviewed by Dr. Shruti Grover &middot; Last updated 13 November 2026</span>
+      <span>Medical review pending &middot; Design draft, 13 November 2026</span>
       <span>Stock photos only. No patient photographs are used.</span>
       <span>This site does not replace medical advice. In an emergency, go to your nearest emergency hospital.</span>
     </div>
@@ -479,24 +490,27 @@
   var CLINIC = {
     name: 'Synergy Acupuncture Clinic',
     address: 'Experion Windchants, Expressway, Choma, Block T, Sector 112, Dwarka, Gurugram, Haryana 122017',
-    shortAddress: 'Sector 112, Dwarka, Gurugram',
+    shortAddress: 'Sector 112, Dwarka',
     plusCode: 'G298+88',
+    hospital: 'Gajraj Hospital',
+    hospitalAddress: 'Opposite Civil Hospital, Gurugram',
+    hospitalHours: '4:00 PM – 6:00 PM',
     phone: '+917669140719',
     phoneDisplay: '+91 76691 40719',
     whatsapp: 'https://wa.me/917669140719',
     whatsappText: 'Hello Dr. Grover, I would like to book a consultation. My concern is: ',
-    maps: 'https://www.google.com/maps/place/Synergy+Acupuncture+clinic-+Dr.+Shruti+Grover/data=!4m2!3m1!1s0x0:0xa8672e827584b5e9',
-    hospital: 'Gajraj Hospital, opposite Civil Hospital, Gurugram',
-    hospitalHours: '4:00 PM – 6:00 PM'
+    maps: 'https://www.google.com/maps/place/Synergy+Acupuncture+clinic-+Dr.+Shruti+Grover/data=!4m2!3m1!1s0x0:0xa8672e827584b5e9'
   };
 
   function setText(key, value){
     document.querySelectorAll('[data-clinic="'+key+'"]').forEach(function(el){ el.textContent = value; });
   }
   setText('address', CLINIC.address);
+  setText('name', CLINIC.name);
   setText('shortAddress', CLINIC.shortAddress);
   setText('plusCode', CLINIC.plusCode);
   setText('hospital', CLINIC.hospital);
+  setText('hospitalAddress', CLINIC.hospitalAddress);
   setText('hospitalHours', CLINIC.hospitalHours);
 
   document.querySelectorAll('a[data-wa]').forEach(function(a){
