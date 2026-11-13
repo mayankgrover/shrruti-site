@@ -5,6 +5,9 @@ Prepared 13 November 2026 for Mayank, to pick one direction for the clinic homep
 - `index.html` - chooser page with the four options, in the order 2, 3, 5, 6.
 - `2/index.html`, `3/index.html`, `5/index.html`, `6/index.html` - the four homepages. Each one is a single
   self-contained file: inline CSS, Google Fonts, no framework, no build step, relative links only.
+- `7/index.html` - **option 7, Sunrise**, added on 13 November 2026: the illustrated and animated option (a sun that rises
+  out of the clouds, a character for every condition, a companion that travels with the reader). Also one self-contained
+  file, also with no framework and no build step. The chooser page is updated by the orchestrator, not by this option.
 - `shots/` - full-page screenshots at 1440px and 390px, `opt*-390-top.png` (first phone screen, with the sticky
   bar in place), `opt*-1440-mid.png` and `opt*-390-mid.png` (mid-scroll, so the sticky and scroll-driven states are
   visible) and `opt*-preview.jpg` (the card image on the chooser page).
@@ -16,7 +19,8 @@ Options 1 (Clinical calm) and 4 (Doctor-first authority) were **deleted on 13 No
 
 All four pages carry the same facts, in the same order: header, hero, her story (MS), conditions treated, how a
 first visit works, credentials, location, FAQ (4), booking (WhatsApp + form), footer, sticky "Book on WhatsApp" bar
-on mobile.
+on mobile. Option 7 carries the same facts in the same order (it has five FAQ entries instead of four, and every picture
+on it is an illustration we drew rather than a stock photo).
 
 **What the review round changed (13 November 2026).** The reviewer's ten findings are listed at the end of this file,
 under **Review notes**. The big ones: option 5's sticky story now really sticks (it was taller than the space it had
@@ -178,7 +182,335 @@ tree. All were captured and read on **13 November 2026**.
 - **Inspired by:** Linear (dark, precise, product-led), Superpower (dark glow hero, layered panels - `research/mobbin/web-superpower-dark-glow-hero.webp`), Vercel (radial glows, marquee, hairline grid), Headspace (calm, friendly motion), Function Health (stat counters).
 - **Watch out:** dark pages can read as less welcoming to an older first-time patient. The type is large, the copy is plain, and the WhatsApp button is the brightest thing on the page.
 
+### Option 7 - Sunrise (`7/index.html`) - new, illustrated and animated
+
+The brief for this one was *the closest to Headspace*: warm yellow, orange and cream, a deep navy ink, a hero where a
+smiling sun-character rises out of soft layered clouds, and a small character for every condition. It is the first option
+in this repo where **every** picture is an illustration we drew as SVG - there is not one raster image or stock photo on the
+page.
+
+- **Idea:** a sunrise. The page opens on a warm yellow sky, the sun rises out of the clouds over about two seconds, and the
+  rest of the page is that same sunrise told in bands: cream (her story), white (conditions), teal (a pause to breathe),
+  cream (the first visit), navy (credentials and the evidence note), white (where to find her), cream (questions), and a
+  yellow band that bookends the hero at the booking form.
+- **Fonts:** **Figtree** (400-900, variable) for headings and UI, **Nunito** (400-800, variable) for body text. Both from
+  Google Fonts, loaded without blocking the first paint, with metric-matched local fallback faces (`size-adjust`) so the
+  swap costs no layout shift.
+- **Colours:** sky `#FFE08A` to `#FFB02E` (the hero band), cream `#FFF6E9`, paper `#FFFDF8`, sun orange `#FF7A2F` with
+  `#E85D18` for the shaded half, peach `#FFDCBF`, blush `#FFB49E`, ink navy `#16203C` (with `#2B3A5E` and `#55648A` for
+  body text), teal `#3E8E82` for the breathe band and the small tags, sand `#F3E3C8` for hairlines, WhatsApp green `#25D366`.
+- **Layout:** sticky header (transparent over the yellow sky, turning cream with a blur once you scroll); hero with the
+  eyebrow, the headline *Feel at home in your body again.*, one line of plain English, a navy pill button, a WhatsApp
+  link and three fact pills, with the sun scene beside it (below it on a phone); a navy marquee of what she treats; her
+  story as a sticky illustration beside the text and the evidence note; twelve condition cards, each with its own small
+  character; a teal *breathe with me* band; three first-visit cards under a dotted path with a little sun walking it; the
+  credentials list beside the MS evidence note; a map illustration beside the two places; the FAQ beside a speech-bubble
+  character; and the yellow booking band with the WhatsApp buttons and the short form.
+- **The illustration system (52 inline SVGs, 28 KB in total):**
+  - The **hero sun** is the face of the brand: a flat orange disc with closed-eye arcs, a wide smile and blush cheeks,
+    a cream halo to lift it off the yellow, and four layers of cloud (two drifting back, two drifting front) that it rises
+    from. Sparkles pop, two birds drift, the sun breathes and blinks.
+  - **Every condition has its own character** in a cream disc: a figure bent over its lower back, a head tipping with
+    tight shoulders, a shoulder with a strain mark, a leg with a lightning bolt down it, a knee with a bandage and a smile,
+    two knuckles with a sparkle, a joint with creak lines, a head with a migraine spiral, a stress knot, a sleepy moon
+    with a Z, a crescent moon with a flower, and the sun again with a halo for *support, not a cure*.
+  - **Other scenes:** dawn hills with a walker on a path (her story), a smiley sun inside the breathing disc, a friendly
+    map pin on a street map (location), the sun in a speech bubble (FAQ), and the little walking sun on the first-visit path.
+  - Style rules for the whole set: flat fills only, no gradients on the characters, closed-eye smiles or dot eyes, navy
+    line work, blush cheeks, and the same six colours everywhere.
+- **The companion (Mayank's ask):** a small sun with a rotating ray ring sits in the right-hand lane from 1080px up and
+  travels up that lane as the page goes by (a scrubbed ScrollTrigger). It waves in the hero, holds a leaf in her story,
+  points at the conditions, breathes in the credentials band, holds a map pin at the location, and holds a small **Book**
+  sign at the booking form. It blinks like the hero sun. A short line appears in a bubble above it when the section
+  changes, and it is a WhatsApp link all the way through. On a phone it is the little sun in the sticky bottom bar, so it
+  never covers a line of text.
+- **Motion (all of it, and what each one costs):**
+  - **Hero intro, about 3 s:** the sun rises from behind the clouds with a slight overshoot, the back clouds drift in, the
+    front clouds lift, the headline and the buttons slide up in a 90 ms stagger, the sparkles pop in a 120 ms stagger, the
+    birds fly in. Nothing is animated with `top`/`left`/`width`; only `transform` and `opacity`.
+  - **Idle loop:** four cloud layers drift at 15-27 s, the sun breathes (1.035, 3.4 s), the sparkles twinkle, the birds
+    cross, and the sun blinks every 3.4 s.
+  - **Scroll-driven:** the hero scene and the hero copy drift up and fade as the hero leaves; the three hills in her-story
+    illustration move at 3%, 6% and 10% (parallax) and the walker walks the path; the condition cards and their characters
+    pop in; the dotted path in the first-visit section draws itself with `stroke-dashoffset` while the little sun walks it
+    from step 01 to step 03; the sections, cards, FAQ rows and the form rise into place.
+  - **Micro-interactions:** the buttons squish on press and spring back (elastic), the condition and step cards tilt up to
+    7 degrees under the pointer (fine pointers only), and the breathe disc runs 4 seconds in and 4 seconds out with the
+    label swapping between *Breathe in* and *Breathe out*.
+  - **Reduced motion:** `prefers-reduced-motion: reduce` removes every timeline, every loop and every travel; the
+    illustrations stay exactly where they are and the page reads as a normal page.
+- **Inspired by (all read on 13 November 2026):**
+  - **headspace.com** (https://www.headspace.com/) - the flat yellow band, the enormous pill button, the smiling orange
+    face, the wave dividers and the scrolling line of big type. This is the structure option 7 copies.
+  - **research/mobbin/motion-headspace-sun-rising-in-clouds.webp** - the exact scene in the hero: a flat sun character with
+    a closed-eye smile rising out of layered clouds.
+  - **research/mobbin/motion-headspace-meditation101-sun-card.webp** - the character on a rotated white card, and the warm
+    layered palette.
+  - **research/mobbin/motion-figma-concentric-rings-hero.webp** - the expanding rings in the breathe band.
+  - **research/mobbin/motion-maxima-therapy-bold-type-character.webp** - a single bold colour field and big type.
+  - **research/mobbin/motion-marshmallow-blob-eyes-logo.webp** and **web-headspace-care-character-accordion.webp** - how
+    little a face needs to be to give a shape a personality.
+  - **Its Nice That, Headspace overhauls visual identity to become mental health all-rounder** (25 April 2024),
+    https://www.itsnicethat.com/articles/italic-studio-headspace-graphic-design-project-250424 - Headspace's orange smiley
+    (inspired by meditation robes) and its breath-driven animations.
+  - **Figma, Building a design system that breathes with Headspace** (6 December 2023),
+    https://www.figma.com/blog/building-a-design-system-that-breathes-with-headspace/ - the same colour and motion tokens
+    idea, applied here as CSS custom properties.
+- **Lottie:** not used. Every animation is our own SVG plus CSS, so there is no third-party licence to record.
+- **Weight (measured 13 November 2026):** the page is one HTML file, 94 KB, of which **28 KB is inline SVG** (the budget is
+  120 KB). JavaScript is **50.2 KB gzipped in total**: GSAP 3.13 core 28.2 KB + ScrollTrigger 17.8 KB (both pinned to
+  `cdn.jsdelivr.net/npm/gsap@3.13.0`) + the page's own script 4.2 KB. The budget is 80 KB gzipped per page. CSS is 24.8 KB
+  raw / 6 KB gzipped, inline.
+- **The motion recordings:** `shots/opt7-motion-390.mp4` (390x844, 20.6 s, 399 frames) and `shots/opt7-motion-1440.mp4`
+  (1440x900, 23.0 s, 496 frames), with the still frames at 0 s, 1 s, 2 s, 4 s and mid-scroll next to them. They were made
+  with `scripts/tools/motion.js`, which drives the same headless Chrome as `scripts/tools/cdp.js` over the DevTools
+  protocol (`Page.startScreencast`) and stitches the frames with ffmpeg. No Playwright download was needed.
+- **Watch out:** the hero band is a colour field, so the page has no photograph of her at all - that is deliberate (NMC
+  guideline 9.2, see section 3), but it means the page has to earn trust with type, credentials and the evidence note.
+  The companion's bubble is a floating layer and can sit over the right-hand gutter for a few seconds; it is
+  `pointer-events: none` so it can never block a button.
+
+
+### Option 8 - Qi friends (`8/index.html`) - new, illustrated and animated
+
+The brief for this one: **playful-geometric**, the way Marshmallow, Figma and Maxima Therapy are. Cream paper, sage
+green, coral and lilac blobs. The companion is a soft blob with two dot eyes, called **Qi**, and it morphs between
+shapes as you scroll (circle, then a drop, then a leaf). Giant bold type, shapes that pop in, and a band of concentric
+rings that expand for the "breathe with me" moment.
+
+- **Idea:** a page of friendly shapes on cream paper, and one small character that walks the reader through it. The
+  hero is a coral blob with two dot eyes and a leaf on its head, standing in front of a big sage disc with a lilac
+  arch, a yellow sun, a white cloud, a checkerboard, a squiggle and a small lilac circle around it. Every band below
+  keeps the same flat, outlined, sticker-like language: cream for her story, a coral marquee of what she treats,
+  cream for the condition cards, a pale yellow band for the breathing rings, cream for the first visit, near-black for
+  the credentials and the evidence note, cream for the location and the questions, a deep green band for booking, and
+  a near-black footer.
+- **Colours:** cream `#FBF3E4` (page), cream2 `#F5E9D2` (alternating bands), paper `#FFFCF5` (cards), ink `#241C12`
+  (all type and all line work), ink2 `#4B4136` (body), ink3 `#6E6153` (small print), coral `#FF7A5C`, coral-deep
+  `#D9452B` (the big word *inside*), coral-ink `#B33A22` (small coral kickers, 5.4:1 on cream), sage `#A9CDA0`,
+  sage-2 `#7FB383`, sage-deep `#3E6B4C` (the booking band), lilac `#C6B2E8`, lilac-deep `#6B4FA8` (source links),
+  sun `#FFC24A`, sun-soft `#FFE9BE` (the breathing band and the character tiles), WhatsApp green `#25D366`.
+- **Fonts:** **Figtree** (variable 300-900) from Google Fonts, for the giant display type and the UI. Loaded without
+  blocking the first paint, with metric-matched local fallback faces (`size-adjust` 101% at 400, 108% at 700-900) so
+  the swap costs no layout shift. The ratios were measured in Chrome on 13 November 2026.
+- **Layout:** sticky header (cream with a blur, a hairline once you scroll); hero with the eyebrow, the headline
+  *A doctor who knows MS from the inside.*, one line of plain English, a coral pill button, a WhatsApp button and
+  three fact pills, with the scene beside it (below the headline on a phone, so the scene, the headline and the button
+  all fit the first screen at 390x844); a coral marquee of the conditions; her story as a drawing beside the text, the
+  timeline and the evidence note; eleven condition cards, each with its own drawn character; the *breathe with me*
+  band with the expanding rings; three first-visit cards with 01/02/03 in three different shapes; the credentials list
+  beside the evidence note; the two places she works; four questions; and the green booking band with the WhatsApp
+  buttons and the short form. A sticky *Book on WhatsApp* bar on a phone.
+- **The illustration system (21 inline SVGs, 14.6 KB in total):**
+  - The **hero scene** is the face of the brand: a coral blob with two dot eyes and a smile, a leaf on its head, a big
+    sage disc behind it, and six flat shapes around it (lilac arch, coral circle, yellow sun, white cloud, checkerboard,
+    ink squiggle, yellow leaf). The shapes pop in one after another and the blob breathes.
+  - **Eleven condition characters**, one per card, in the same flat style: a red curve and a dot for low back pain, a
+    figure with a spark for neck and shoulder pain, two bone ends and a worn joint for knee and joint pain, two curved
+    bones for osteoarthritis, a leg with a lightning bolt for sciatica, a head with a swirl under a star for migraines, a
+    leaf with a face for stress, a crescent moon with a closed eye for sleep, a five-petal flower for women's health, a
+    drop with two eyes for Qi balance, and a circle with a pulse line for MS (on a lilac card, labelled *Support, not a
+    cure*).
+  - **Other drawings:** the story scene (two characters sitting on a green hill under a sun, with a path and a leaf),
+    the two map pins for the location, the concentric rings, and Qi itself.
+  - Style rules for the whole set: flat fills, a 4-5px ink outline on every shape, dot eyes or closed-eye smiles, and
+    the same six colours everywhere. No gradients, no raster images, no stock photos.
+- **Qi, the companion (Mayank's ask):** a sage-green blob with two dot eyes and a smile, 94px on a desktop, in the
+  right-hand gutter. It stays on screen the whole way down and travels as you scroll, and it **morphs**: a circle in the
+  hero and her story, a **drop** in the conditions band, a **leaf** in the breathing band and through the first visit
+  and the credentials, and back to a circle at the location, the questions and the booking form. The morph is real
+  geometry (GSAP MorphSVG), not a swap: the two eyes travel to their new place, the smile morphs with them, and the leaf
+  grows a midrib and loses the smile. It hops when the section changes, it breathes, it blinks, and it holds a small
+  **Book** sign at the booking form. One short line appears in a bubble per section ("Hello. I am Qi.", "I know MS from
+  the inside too.", "Which one sounds like you?", "In for four. Out for four.", "Three steps. Nothing hidden.", "A
+  pathologist first.", "Sector 112, Dwarka. See you.", "Ask me anything.", "Tap me to book on WhatsApp."); the line
+  reads itself and then steps aside after about four seconds, so it never sits on the copy. Tapping Qi opens WhatsApp.
+  On a phone Qi **rides in the sticky booking bar** (bottom left, next to the button), so it can never cover a line of
+  text or a button.
+- **Motion (all of it, and what each one costs):**
+  - **Hero intro, about 2.4 s:** the eyebrow drops in, the headline rises line by line from behind its own mask, the
+    scene scales up, the shapes pop in a 70 ms stagger, the character springs in, then the sub-line, the two buttons and
+    the three fact pills. Only `transform` and `opacity` are animated.
+  - **Idle loop:** the hero character breathes (1.035, 2.6 s) and its outline thickens by a hair, two small shapes float
+    on CSS keyframes, and the marquee scrolls.
+  - **Scroll-driven:** every section, card, step, question and the form rise into place once; the drawn shapes in each
+    scene pop in when the drawing enters the screen; the condition cards pop in a wave; the rings expand; and Qi morphs
+    and hops as the section changes.
+  - **The breathing moment:** five concentric rings (coral, sun, lilac, sage, ink) around a dark centre with *Breathe
+    with me* inside it. The set pulses 4 seconds in and 4 seconds out, the rings brighten in a wave, and the label under
+    it swaps between *Breathe in* and *Breathe out*.
+  - **Micro-interactions:** the buttons squish on press and spring back, the coral buttons pull gently towards the
+    pointer (fine pointers only), the condition cards tilt with the pointer, and Qi blinks every 3.4 s.
+  - **Reduced motion:** `prefers-reduced-motion: reduce` removes every timeline, every loop and the travel; the
+    illustrations stay exactly where they are, Qi stays a circle in the gutter, and the page reads as a normal page.
+- **Inspired by (all read on 13 November 2026):**
+  - **Marshmallow** (https://marshmallow.com/) - the pink blob logo with two eyes and the heavy rounded wordmark. That is
+    the whole idea of Qi: a face needs two dots and nothing else. Saved as `research/mobbin/motion-marshmallow-blob-eyes-logo.webp`.
+  - **Figma** (https://www.figma.com/ and https://www.figma.com/blog/building-a-design-system-that-breathes-with-headspace/)
+    - the flat geometric shapes that pop in (`research/mobbin/motion-figma-playful-shapes.webp`) and the expanding
+    concentric rings (`research/mobbin/motion-figma-concentric-rings-hero.webp`), which are the breathe band here.
+  - **Maxima Therapy** (https://maximatherapy.com/) - one bold colour field, enormous condensed type and a flat character
+    with dot eyes (`research/mobbin/motion-maxima-therapy-bold-type-character.webp`). The coral marquee band is the same
+    idea: a single flat field with very big type.
+  - **headspace.com** (https://www.headspace.com/) - the level of illustration, the friendly characters and the calm pace.
+  - **GSAP** (https://gsap.com/blog/3-13/) - "Thanks to Webflow GSAP is now 100% FREE including ALL of the bonus plugins
+    like SplitText, MorphSVG, and all the others". That is why MorphSVG can be used here for free, pinned to
+    `cdn.jsdelivr.net/npm/gsap@3.13.0`.
+  - **Multiple Sclerosis Trust, "Acupuncture" (A-Z of MS)** (https://www.mstrust.org.uk/a-z/acupuncture) and the **US
+    National Center for Complementary and Integrative Health, "Acupuncture: Effectiveness and Safety"**
+    (https://www.nccih.nih.gov/health/acupuncture-effectiveness-and-safety) - the two sources printed on the page, next
+    to the MS wording. See section 3 for why the page says *support* and never *cure*.
+- **Lottie:** not used. Every animation is our own SVG, so there is no third-party licence to record.
+- **Weight (measured 13 November 2026):** the page is one HTML file, **78.0 KB**, of which **14.6 KB is inline SVG** (the
+  budget is 120 KB). JavaScript is **59.3 KB gzipped in total**: GSAP 3.13 core 28.2 KB + ScrollTrigger 17.8 KB +
+  MorphSVGPlugin 7.5 KB (all pinned to `cdn.jsdelivr.net/npm/gsap@3.13.0`) + the page's own script 5.8 KB. The budget
+  is 80 KB gzipped per page. CSS is 22.1 KB raw / 5.7 KB gzipped, inline. The page loads no images at all: there is no
+  raster file anywhere, so the whole picture is 14.6 KB of vector.
+- **Performance (measured 13 November 2026):** mobile 390x844 with the CDP tool's Slow 4G profile: **LCP 1.5 s** (the
+  hero sub-line; the headline is masked while its lines fly in), **CLS 0**, **FCP 0.23 s**. There is no hero image at all,
+  so the largest contentful paint is text.
+- **Contrast (measured, not guessed):** ink on cream 15.2, body ink on cream 9.0, small print on cream 5.4, ink on the
+  coral button 6.6, ink on the sage tag 9.5, cream on the ink band 15.2, the sage kicker on ink 9.5, the WhatsApp button
+  8.4, the small coral kicker 5.4 and the sun kicker on the booking band 4.5. All AA.
+- **The motion recordings:** `shots/opt8-motion-390.mp4` (390x844, 20.5 s, 512 frames) and
+  `shots/opt8-motion-1440.mp4` (1440x900, 16.4 s, 409 frames), with the still frames at 0 s, 1 s, 2 s, 4 s and
+  mid-scroll next to them (`opt8-motion-390-0s.png` and so on). They were recorded with **Playwright 1.49.1** driving
+  the installed Google Chrome (`/Applications/Google Chrome.app`) with `recordVideo`, and stitched to H.264 with ffmpeg.
+  The script is `scripts/tools/record-motion-playwright.js`, so the recording can be repeated:
+  `node scripts/tools/record-motion-playwright.js --opt 8 --w 390 --h 844`.
+- **Watch out:**
+  - The page has **no photograph of her at all** - every picture is our own drawing. That is deliberate (NMC guideline
+    9.2, see section 3), but it means the page has to earn trust with type, the credentials list and the evidence note.
+  - Qi's bubble is a floating layer over the right-hand gutter for about four seconds at a time. It is
+    `pointer-events: none`, so it can never block a button, and it hangs **under** the character rather than beside it,
+    so it never lands on a heading. On a phone it is in the sticky bar instead.
+  - The registration number is still a placeholder ("NMC registered - Registration number to be added"), and the form
+    is a demo that is not connected to anything yet.
+- **Review notes (13 November 2026):** the build was reviewed against the frames and the recordings, and these were
+  fixed:
+  1. **The headline never appeared.** The CSS pre-state used `translate3d(0,110%,0)`, which the browser resolves to a
+     pixel value, so GSAP's `yPercent` could not reset it and the headline stayed hidden behind its own mask. The tween
+     now sets both `y` and `yPercent`.
+  2. **The hero buttons and pills never appeared** for the same reason: the pre-state was on the container and the tween
+     was on the children. The pre-state is now on the children.
+  3. **The hill in the story drawing was missing.** A shape that is scaled to zero has no box, so a ScrollTrigger placed on
+     the shape itself fired at the wrong place. The trigger is now on the `<svg>` that holds the shapes, and the shapes are
+     grouped by drawing.
+  4. **The Qi bubble sat on the headline.** It now hangs under the character and reads itself out after four seconds.
+  5. **The story hill was cut off by the edge of the drawing** and the note card covered the leaf. The hill now runs past
+     the bottom edge and the note card sits under the drawing.
+  6. **The small coral kicker was 3.9:1** on cream and the sun kicker on the green band was 3.8:1. Both were darkened
+     to 5.4:1 and 4.5:1.
+  7. **On a phone the companion sat on top of the hero button.** It now rides in the sticky booking bar instead.
+
+
 ---
+
+### Option 9 - The path (`9/index.html`) - new, illustrated and animated
+
+The brief for this one: **a scroll story through a soft landscape**. Rolling layered hills drawn in SVG with soft
+gradients, a winding path, and a small character that walks the path as you scroll and passes signposts that are the
+sections (her story -> conditions -> first visit -> the clinic -> book). The sky moves from dawn to a calm morning as
+you go. It still has to read as a doctor's clinic: clean type panels over the scene, credentials clear.
+
+- **Idea:** one landscape, one road, one journey. The page is not a stack of bands - it is a single 1440x900 illustrated
+  world that stays fixed behind everything while the camera travels along a road. A small walker in a teal coat walks
+  that road as you scroll, and six signposts along it are the six sections: **01 Story, 02 Treatments, 03 First visit,
+  04 Training, 05 Clinic, 06 Book**. The signpost the walker is standing next to lights up (teal board, white label).
+  The sky starts peach at dawn and cross-fades to a calm blue morning over the first half of the walk; a warm light
+  overlay comes up with it. The clinic building waits at the end of the road, and the walker arrives holding a **BOOK**
+  sign. All the writing sits in cream cards on the right, so the world and the walker keep the left side to themselves.
+- **How the camera works (the interesting bit):** the scene is one inline SVG with `viewBox="0 0 1440 900"` and
+  `preserveAspectRatio="xMidYMid slice"`, so it fills any screen without stretching. The road is a real SVG path; the
+  walker's position comes from `path.getPointAtLength()` (no motion-path plugin needed), and the tangent of the road
+  gives it a small lean. Five layers move at different rates (far ridge 0.16, middle ridge 0.42, near bank 0.68,
+  ground 1.0, foreground 1.16) so the world has depth, and the camera follows the walker so it never runs off the screen.
+  Because the SVG is scaled to the viewport, the same scene works at 390px and at 2560px without a second drawing.
+- **Fonts:** **Bricolage Grotesque** (600-800, variable) for the headlines and section titles, **Figtree** (400-800,
+  variable) for everything else. Both from Google Fonts, loaded without blocking the first paint, with metric-matched
+  local fallback faces (`size-adjust`) so the swap costs no layout shift.
+- **Colours:** dawn sky `#FFD79B` -> `#FFB69E` -> `#F7C2B4`, morning sky `#B6DCF3` -> `#CFE9E5` -> `#FFF7EA`; far ridge
+  `#CBDCD8`, middle ridge `#A5C6B2`, near bank `#9CC3A6`, field `#E4EED6`; the road `#EAC99C` with a `#C79C6E` edge;
+  trees `#4C8163` / `#3F7358`, bushes `#6FA186`; cream `#FFF6E9` (page), paper `#FFFCF6` (cards), ink `#1D2C2A`,
+  body `#51625E`, teal `#12706B` (the coat, the buttons, the active signpost), ochre `#DE7B2C` (the scarf, the sun,
+  the kickers), rose `#E98681` (the bag, the map pin), WhatsApp green `#25D366`.
+- **The illustration system (18 inline SVGs, 21.5 KB in total, budget 120 KB):**
+  - The **landscape**: three rolling ridges drawn as long cubic paths with vertical gradients, a field whose top edge
+    follows the road, eleven trees and nine bushes placed with `<use>`, a two-stroke road, six signposts, the clinic
+    building with a CLINIC signboard, and the walker.
+  - The **walker** is the face of the brand: a soft teal coat, an ochre scarf, a rose satchel, a cream face with a dark
+    fringe, closed-eye arcs and a small smile. It is a character, **not** a picture of Dr. Grover (NMC guideline 9.2 - see
+    section 3), and nothing on the page claims that it is her.
+  - **Every section gets a scene, not an icon:** her story is a microscope, a mug of tea and a plant on a desk; the
+    conditions are a friendly figure with soft rings on the head, shoulders, back and knees, beside a written plan; the
+    first visit is three vignettes (a clinic door, two people talking, a ticked list); training is four milestone flags
+    along a path; the clinic is a small building with a map pin and a tree; the four tiles under *what she works with*
+    carry a needle, a heart, a moon and two people.
+- **The companion (Mayank's ask):** the walker never leaves the screen - it walks in the left lane at about 30% of the
+  viewport width (27% on a phone), its legs swing only while the page is moving, it stands beside the signpost of the
+  section you are reading, and at the end of the road it holds up the **BOOK** sign next to the clinic. The walker is a
+  WhatsApp link: tapping it opens the booking chat, and it is a real `<a>` inside the SVG, so it works with a keyboard
+  and a screen reader (`aria-label="Book a consultation on WhatsApp"`).
+- **Motion (all of it, and what each one costs):**
+  - **Hero intro, about 2.6 s:** the sun rises into the dawn sky, the three ridges rise from nothing in a 150 ms stagger,
+    the road draws itself with `stroke-dashoffset`, the foreground bank fades up, the walker walks in from the left, and
+    the hero panel and its four credential chips rise in a 90 ms stagger. Only `transform` and `opacity` are animated.
+  - **Idle loop:** three clouds drift across the sky at 64-92 s, the sun's rays turn slowly (90 s), the walker's legs
+    swing when you scroll, and the breathe circle runs 4 s in and 4 s out.
+  - **Scroll-driven:** the camera travels along the road, the ridges and the trees drift at their own rates, the sky
+    cross-fades from dawn to morning, the birds come out at half way, the signpost of the current section lights up,
+    the walker's BOOK sign appears at the end, and the cards rise into place once each.
+  - **Micro-interactions:** the buttons squish on press and lift on hover, the condition tiles lift 3px, the breathe
+    circle runs 4 seconds in and 4 seconds out with the label swapping between *Breathe in* and *Breathe out*.
+  - **Reduced motion:** `prefers-reduced-motion: reduce` removes every timeline, every loop and every travel. The
+    landscape stays exactly where it is, the road is already drawn, and the page reads as a normal page.
+- **Medical and NMC wording:** the same rules as options 5-8, with the wording in section 3 of this file. Acupuncture for
+  MS is written as *support* only, the evidence note links to its source, there are no testimonials, no ratings, no
+  before-and-after, no "best doctor" wording, no prices, no urgency and no offers, the page carries the AI source mark
+  (guideline 7.2) and the medical-review-pending line, and the walker is not presented as a portrait of Dr. Grover
+  (guideline 9.2). The safety line in the FAQ ("generally considered safe when it is done by an experienced, trained
+  practitioner using sterile single-use needles") is taken from the NCCIH page below.
+- **Inspired by (all read or checked on 13 November 2026):**
+  - **research/mobbin/motion-clay-3d-landscape-hero.webp** - the soft rolling landscape with a road winding through it,
+    and the way the road pulls the eye from the foreground to the horizon. This is the shape of the scene.
+  - **research/mobbin/motion-mana-walking-character-hero.webp** - a big flat character that walks across a line-drawn
+    landscape. This is where the companion comes from: the character walks in place while the world moves.
+  - **research/mobbin/motion-headspace-sun-rising-in-clouds.webp** - the flat sun with a closed-eye smile, and the idea
+    that one warm shape is enough to carry a page.
+  - **research/mobbin/motion-headspace-pink-blob-bubbles.webp** - the flat shapes with no outlines on the characters, and
+    the layered colour fields.
+  - **headspace.com** (https://www.headspace.com/) - the friendly illustrated voice, the pill buttons, and the fact that
+    every panel has a drawing rather than an icon.
+  - **Multiple Sclerosis Trust, "Acupuncture" (A-Z of MS)**, https://mstrust.org.uk/a-z/acupuncture (read 13 November
+    2026; the page says it was last updated 1 April 2022). The source for the evidence note: the 2014 review of 12 studies,
+    the 2018 spasticity review and the 2021 review, and the rule that this site therefore writes acupuncture for MS as
+    *support* and never as a cure.
+  - **NCCIH, "Acupuncture: Effectiveness and Safety"**,
+    https://www.nccih.nih.gov/health/acupuncture-effectiveness-and-safety (read 13 November 2026; the page says it was
+    last updated October 2022). The source for the safety answer in the FAQ and for the words *sterile* and *single use*.
+  - **NMC, "Guidelines on Ethical Advertising and Public Communication"**, public notice R-13014/01/2024-Ethics dated
+    6 October 2026, https://nmc.org.in/whats-new/download/1874 (read 13 November 2026). The source for the AI source mark
+    (7.2), the no-testimonial rule (Explanations III-V, 8.1.xi), the factual-information rule for clinical
+    establishments (9.1) and the photograph rule (9.2).
+  - The clinic address, the plus code and the two places come from the Google listing read on 13 November 2026 and are
+    held in one config object, so a move is a one-line change.
+- **Lottie:** not used. Every animation is our own SVG plus CSS, so there is no third-party licence to record.
+- **Weight (measured 13 November 2026):** the page is one HTML file, 70 KB, of which **21.5 KB is inline SVG** (the budget
+  is 120 KB). JavaScript is **49.3 KB gzipped in total**: GSAP 3.13 core 28.2 KB + ScrollTrigger 17.8 KB (both pinned to
+  `cdn.jsdelivr.net/npm/gsap@3.13.0`) + the page's own script 3.3 KB. The budget is 80 KB gzipped per page. CSS is
+  17.9 KB raw / 5.2 KB gzipped, inline. The whole HTML without CSS and JavaScript is 10.7 KB gzipped.
+- **Performance (measured 13 November 2026, mobile 390x844, Slow 4G + 4x CPU):** LCP 0.32 s, CLS 0.0005, FCP 0.18 s.
+  The scene is a fixed layer, so it costs no layout; the only layout shift is 0.0005, from the font swap.
+- **The motion recordings:** `shots/opt9-motion-390.mp4` (390x844, 10.6 s, 91 frames) and `shots/opt9-motion-1440.mp4`
+  (1440x900, 10.8 s, 74 frames), with the still frames at 0 s, 1 s, 2 s, 4 s and mid-scroll next to them. They were made
+  with `scripts/tools/record-motion.js`, which drives the same headless Chrome as `scripts/tools/cdp.js` over the
+  DevTools protocol and stitches the frames with ffmpeg at their real timings (a concat list with a duration per
+  frame). No Playwright download was needed.
+- **Watch out:** the scene is fixed, so on a very short screen the text cards cover the walker for a few seconds while a
+  long card is on screen. The walker always has the left third of the desktop layout to itself; on a phone it is the
+  lower part of the screen, under the card. The road is a drawn path, not a map: the address is text, and the map link
+  is the one in the config.
+
 
 ## 3. Medical and NMC compliance (why some things are deliberately missing)
 
@@ -412,6 +744,90 @@ the pages clean on the medical side. Ten findings. Here is what was done about e
 10. **Research artefacts were untracked and uncited (minor).** `research/mobbin/` (11 Mobbin captures) is now committed
     and cited in the research table in section 1, and the round summary `scripts/logs/motion-w1.txt` is committed too.
     A `.gitignore` now keeps the raw run logs and the Lighthouse reports out of the tree.
+
+### Option 7 - Sunrise (writer's own check, 13 November 2026)
+
+Option 7 was built and checked on the same day, after the review round above. What was found and fixed, in the order it was
+found (the numbers were measured with `scripts/tools/cdp.js --metrics --throttle`, the Lighthouse mobile profile):
+
+1. **The first phone screen did not fit.** The scene, the headline and the Book button all have to be inside 390x844. The
+   lede was cut to one short sentence, the fact pills were compacted (and the middle one is hidden under 520px), the hero
+   scene's viewBox was cropped from 340 to 302 units, and the pill row lost 6px of margin. The scene, the headline and the
+   button are now all above the fold: see `shots/opt7-390-top.png`.
+2. **The sun had no eyes in the first screenshots.** The blink timeline fired on its first frame, so every screenshot
+   caught it mid-blink. The first blink now waits 5.2 s.
+3. **The logo read as a spiky blob at 42px.** The rays are gone; the logo is a clean smiling sun.
+4. **The companion's bubble sat over the right-hand gutter.** It now sits above the character, is 172px wide at most, and
+   is `pointer-events: none`, so it can never cover a button.
+5. **The breathe label was printed on top of the disc.** The disc now holds the sun's face and the *Breathe in / Breathe
+   out* label sits under it.
+6. **The location pin sat on top of the address.** The address and the heading now keep clear of the pin.
+7. **The condition cards had an empty top-right corner.** The tag (Pain, Joints, Mind, Support...) moved to the top right
+   and the character grew from 74 to 84px.
+8. **Her story illustration floated in the middle of a tall column.** It is now `position: sticky` at 96px on desktop, so it
+   stays with the paragraph you are reading.
+9. **LCP was 2.58 s.** The cause was the hero copy fading in from `opacity: 0`: the text was not painted until the animation
+   ran. The copy is now painted on the first frame and slides up with a transform only (transforms do not delay LCP and do
+   not shift layout). Measured after the change: **LCP 236 ms at 1440x900 and 172 ms at 390x844**, FCP 232 ms and 172 ms.
+10. **CLS was 0.139.** The cause was the font swap: the three fact pills wrap to two rows in the fallback font and to one row
+    in Figtree, so the hero grew by 41px when the webfont arrived and pushed the marquee and the story section down. Fixed
+    three ways: the pill row reserves the height of two rows, the marquee track has a fixed height, and the header nav has a
+    fixed width on wide screens. Measured after the change: **CLS 0.018 at 1440x900 and 0.000 at 390x844**.
+11. **The first recording never scrolled.** The scroll script compared a `Date.now()` timestamp with the
+    `requestAnimationFrame` timestamp, so the progress was always negative and the page was told to scroll to 0. Fixed by
+    using `performance.now()` on both sides.
+12. **The first recording was 3 fps.** Headless Chrome was launched with `--disable-gpu`, which throttled the screencast.
+    Without that flag the same script records about 20 fps, and the final files are 399 frames (390px) and 496 frames
+    (1440px).
+
+Still open, on purpose:
+
+- The companion's bubble is a floating layer. It appears for about three seconds when the section changes and it can sit
+  over the empty right-hand gutter. It never blocks a click.
+- The fact pills reserve two rows of height, so on a desktop there is a little extra air under them. That is the price of a
+  zero-shift font swap.
+- There is no photograph of her anywhere on the page. That is deliberate (NMC guideline 9.2, section 3), but it means the
+  page has to earn trust with type, the credentials list and the evidence note.
+- The form is a demo and sends nothing.
+
+
+### Option 9 - The path (writer's own check, 13 November 2026)
+
+Six things were wrong in the first build and were fixed before the recordings were made. They are written down because
+they are the traps in this kind of page, not because anybody else will hit them.
+
+1. **The page did not move at all.** The inline script had `defer` on it, which browsers ignore for inline scripts, so it
+   ran *before* the two deferred GSAP files and bailed out. The page still looked fine, which is why it took a
+   screenshot to find. The script now waits for `DOMContentLoaded` (deferred scripts have run by then) and the page
+   checks `window.gsap` before it starts.
+2. **The camera fought the intro.** The intro animated the same groups the camera moves, so the two overwrote each other
+   and the landscape jumped. Every parallax layer now has an inner group: the camera moves the outer group, the intro
+   moves the inner one.
+3. **The walker stood on nothing.** `draw()` was only called when the scroll position changed, so on a page that never
+   moves the walker was never placed. The scene is now drawn once at start.
+4. **The signpost labels sat on top of their own number badge.** The board was too narrow and the label was centred, so
+   *Treatments* ran into the badge. The boards are 180 units wide, the label is left-aligned and the words are short.
+5. **The walker stood exactly on top of the signpost**, so the sign was hidden whenever it mattered. The signposts now
+   stand 188 units to the side of the road, like a milestone, and the walker passes them.
+6. **On a phone the hero panel was 620px tall**, which left almost no landscape on the first screen. The chips became a
+   two-column grid, the lede and the buttons got smaller and the brand dropped its second line; the panel is now about
+   470px, and the hero screen shows the headline, both buttons, the four credential chips, the walker and the road.
+
+Checks that passed and needed no change: no horizontal scroll at 390px (the scene is a fixed layer with `overflow:
+hidden`), every word is in the HTML (the page reads with JavaScript off; the signposts and the walker are the only things
+JavaScript places, and they have a sensible position without it), the FAQ uses `<details>` so it works with a keyboard and
+without JavaScript, the walker is a real link with an `aria-label`, `prefers-reduced-motion` freezes the journey at the
+first signpost with the road already drawn, and the measured LCP is 0.32 s with a CLS of 0.0005 on a throttled phone.
+
+Still open, on purpose:
+
+- The walking character is a character, not Dr. Grover. NMC guideline 9.2 makes a photograph of the doctor on a clinic's
+  own site a problem, and a cartoon of her would be the same claim in a different dress. If Mayank wants her face on the
+  site, that is a decision to take with the NMC rules, not a design decision.
+- The form is a demo and sends nothing.
+- The Google rating (5.0 from 14 reviews, read 13 November 2026) is not on the page. A rating is factual, but it is also
+  a promotional line, and guideline 8.1.xii is about ratings; leaving it off is the safer side to be wrong on.
+
 
 ### Notes for the next reviewer
 
