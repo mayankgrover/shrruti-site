@@ -28,7 +28,7 @@
     --sky-1:#FFE08A; --sky-2:#FFC53D; --sky-3:#FFB02E;
     --cream:#FFF6E9; --paper:#FFFDF8; --white:#FFFFFF;
     --peach:#FFDCBF; --blush:#FFB49E;
-    --orange:#FF7A2F; --orange-2:#E85D18;
+    --orange:#FF7A2F; --orange-2:#E85D18; --orange-ink:#B2470F;
     --navy:#16203C; --navy-2:#2B3A5E; --navy-3:#55648A;
     --teal:#3E8E82; --teal-2:#2C6B62; --teal-3:#5FB3A5;
     --sand:#F3E3C8;
@@ -48,7 +48,7 @@
   h2{font-size:clamp(1.65rem,4.6vw,3rem);letter-spacing:-.035em}
   h3{font-size:1.05rem;letter-spacing:-.015em;line-height:1.25}
   p{margin:0 0 1rem}
-  a{color:var(--orange-2)}
+  a{color:var(--orange-ink)}
   ul{margin:0;padding:0;list-style:none}
   svg{display:block}
   .wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(1.05rem,4vw,2rem)}
@@ -66,13 +66,13 @@
   .band-navy{background:var(--navy);color:var(--cream)}
   .band-navy h2,.band-navy h3{color:var(--white)}
   .band-navy p,.band-navy li{color:#D9DEF0}
-  .band-teal{background:var(--teal);color:#F2FBF9}
+  .band-teal{background:var(--teal-2);color:#F2FBF9}
   .band-teal h2,.band-teal h3{color:#FFFFFF}
   .band-teal p{color:#DDF0EC}
   .band-yellow{background:linear-gradient(180deg,var(--sky-1) 0%,var(--sky-2) 60%,var(--sky-3) 100%);color:var(--navy)}
   .sec-head{max-width:62ch;margin-bottom:clamp(1.6rem,3vw,2.6rem)}
   .sec-head.center{margin-inline:auto;text-align:center}
-  .kicker{font-family:'Figtree','Figtree Fallback',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange-2);margin:0 0 .5rem}
+  .kicker{font-family:'Figtree','Figtree Fallback',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange-ink);margin:0 0 .5rem}
   .band-navy .kicker{color:var(--sky-2)}
   .band-teal .kicker{color:#BFE9E1}
 
@@ -93,7 +93,7 @@
   .btn-block{width:100%}
   .btn:active{transform:scale(.965)}
   .link-plain{font-family:'Figtree','Figtree Fallback',sans-serif;font-weight:700;color:var(--navy);text-decoration:none;border-bottom:2px solid var(--navy);padding-bottom:2px}
-  .link-plain:hover{color:var(--orange-2);border-color:var(--orange-2)}
+  .link-plain:hover{color:var(--orange-ink);border-color:var(--orange-ink)}
 
   /* ---------------- header ---------------- */
   .head{position:sticky;top:0;z-index:70;background:var(--sky-1);transition:background-color .35s linear,box-shadow .35s linear,border-color .35s linear;border-bottom:2px solid transparent}
@@ -110,9 +110,26 @@
   @media (min-width:1200px){.nav{min-width:720px;justify-content:flex-end}}
   .nav-links{display:flex;align-items:center;gap:1.15rem}
   .nav-links a{color:var(--navy);text-decoration:none;font-family:'Figtree','Figtree Fallback',sans-serif;font-weight:600;font-size:.92rem}
-  .nav-links a:hover{color:var(--orange-2)}
+  .nav-links a:hover{color:var(--orange-ink)}
   @media (max-width:1000px){.nav-links{display:none}}
-  @media (max-width:430px){.brand span{display:none}.head-in{min-height:62px}.btn{padding:.72rem 1rem;font-size:.86rem}}
+  /* On a phone the header keeps her name and the Book button. Only the
+     tagline is dropped, and the sizes below make both fit inside 390px.
+     (NMC wants the name and qualifications on anything she publishes.) */
+  @media (max-width:430px){
+    .head .brand > span > span{display:none}
+    .head-in{min-height:62px;gap:.5rem}
+    .brand svg{width:36px;height:36px}
+    .brand b{font-size:.92rem}
+    .btn{padding:.7rem .85rem;font-size:.82rem}
+  }
+  /* A 320px phone: shrink the name and the button a little more so the
+     Book button is never cut off. */
+  @media (max-width:360px){
+    .wrap{padding-inline:.9rem}
+    .brand svg{width:31px;height:31px}
+    .brand b{font-size:.8rem}
+    .btn{padding:.62rem .7rem;font-size:.76rem}
+  }
 
   /* ---------------- hero ---------------- */
   .hero{position:relative;background:linear-gradient(180deg,var(--sky-1) 0%,var(--sky-2) 42%,var(--sky-3) 100%);border-radius:0 0 var(--r-lg) var(--r-lg);overflow:hidden;padding:clamp(1.2rem,3vw,2.4rem) 0 0}
@@ -138,7 +155,9 @@
   .scene{width:100%;height:auto}
   .hero-scene{position:relative;z-index:1}
   .hero-scene svg{width:100%;height:auto;display:block}
-  .sparkle{transform-box:fill-box;transform-origin:center}
+  /* No transform-box:fill-box on GSAP-animated shapes. GSAP writes the
+     transform origin in user space; fill-box would measure it from the
+     shape a second time and move the shape to the corner. */
 
   /* ---------------- marquee ---------------- */
   .marquee{background:var(--navy);color:var(--cream);padding:.85rem 0;overflow:hidden;position:relative}
@@ -160,7 +179,7 @@
   .story-list .tick svg{width:14px;height:14px}
   .note{border-radius:var(--r);padding:1.2rem 1.35rem;background:var(--white);border:2px solid var(--sand);font-size:.95rem;color:var(--navy-2)}
   .note strong{color:var(--navy)}
-  .note a{color:var(--orange-2);font-weight:700}
+  .note a{color:var(--orange-ink);font-weight:700}
   .note.src{margin-top:1.1rem;font-size:.86rem;background:#FFF9EE}
 
   /* ---------------- conditions ---------------- */
@@ -172,6 +191,12 @@
   .cond-grid .card:hover{border-color:var(--orange);box-shadow:0 18px 40px rgba(22,32,60,.12)}
   .card-wide{grid-column:span 2}
   @media (max-width:619px){.card-wide{grid-column:span 1}}
+  /* the wide card puts its character on the right, so the long line of copy
+     has room on the left */
+  @media (min-width:620px){
+    .card-wide .char{float:right;width:118px;height:118px;margin:.1rem 0 .5rem 1.4rem}
+    .card.card-wide .tag{position:static;margin-bottom:.5rem}
+  }
   .card .char{width:84px;height:84px;margin-bottom:.7rem}
   .card .tag{position:absolute;top:1.4rem;right:1.3rem;display:inline-block;font-family:'Figtree','Figtree Fallback',sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-2);background:rgba(62,142,130,.12);border-radius:999px;padding:.25rem .7rem;margin:0}
   .card h3{margin:0 0 .35rem}
@@ -230,10 +255,10 @@
   .place{background:var(--white);border:2px solid var(--sand);border-radius:var(--r);padding:1.5rem 1.4rem;position:relative}
   .place h3{margin:0 0 .2rem;padding-right:3.6rem}
   .place .addr{color:var(--navy-2);font-size:.95rem;margin:0 0 .9rem;padding-right:3.6rem}
-  .place .meta{font-family:'Figtree','Figtree Fallback',sans-serif;font-weight:700;font-size:.86rem;color:var(--orange-2);margin:0 0 1rem}
+  .place .meta{font-family:'Figtree','Figtree Fallback',sans-serif;font-weight:700;font-size:.86rem;color:var(--orange-ink);margin:0 0 1rem}
   .place .pin{width:56px;height:56px;position:absolute;top:1.1rem;right:1.1rem}
   .place .hours{background:var(--cream);border-radius:999px;padding:.4rem .9rem;display:inline-block;font-family:'Figtree','Figtree Fallback',sans-serif;font-weight:700;font-size:.85rem;color:var(--navy);margin:0 0 1rem}
-  .loc-foot{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;font-size:.95rem;color:var(--navy-2)}
+  .loc-foot{margin-top:1.5rem;font-size:.95rem;color:var(--navy-2);max-width:60ch}
 
   /* ---------------- faq ---------------- */
   .faq-grid{display:grid;gap:clamp(1.6rem,4vw,3rem)}
@@ -276,7 +301,7 @@
   .foot a{color:#E7EAF7;text-decoration:none}
   .foot a:hover{color:var(--sky-2)}
   .foot .brand b{color:#fff}
-  .foot .brand span{color:#9AA4C4}
+  .foot .brand span{color:#9AA4C4;white-space:normal;line-height:1.5}
   .foot-links li{margin-bottom:.45rem}
   .foot-legal{margin-top:2rem;padding-top:1.4rem;border-top:1px solid rgba(255,246,233,.16);font-size:.82rem;color:#9AA4C4;display:grid;gap:.8rem}
   .foot-legal strong{color:#D9DEF0}
@@ -299,7 +324,7 @@
   .buddy-hit svg{width:100%;height:100%;overflow:visible}
   .buddy-bubble{position:absolute;right:-4px;bottom:86px;width:max-content;max-width:172px;background:var(--navy);color:var(--cream);font-family:'Figtree','Figtree Fallback',sans-serif;font-weight:600;font-size:.8rem;line-height:1.35;padding:.55rem .8rem;border-radius:15px 15px 4px 15px;box-shadow:0 14px 30px rgba(22,32,60,.26);opacity:0;transform:translate3d(0,8px,0);pointer-events:none}
   .buddy-bubble::after{content:"";position:absolute;right:12px;bottom:-6px;width:13px;height:13px;background:var(--navy);border-radius:0 0 4px 0;transform:rotate(45deg)}
-  .buddy-arm,.buddy-prop{transform-box:fill-box;transform-origin:center}
+  .buddy-arm,.buddy-prop{transform-origin:center}
 
   /* ---------------- motion defaults ---------------- */
   html.js .hero-anim{transform:translate3d(0,26px,0)}
@@ -310,7 +335,7 @@
   html.js .clouds-back .cloud{transform:translate3d(-60px,0,0);opacity:0}
   html.js .wisp .cloud{transform:translate3d(40px,0,0);opacity:0}
   html.js .sky-birds{transform:translate3d(-40px,0,0);opacity:0}
-  html.js .sparkle{transform:scale(0);opacity:0}
+  html.js .sparkle{opacity:0}
   /* the headline is three lines in the HTML, so it wraps the same way with and without JavaScript */
   .hl-1,.hl-2,.hl-3{display:block}
   /* the breathe stage: one disc and three rings on the same centre */
@@ -331,7 +356,7 @@
   .buddy.mood-book .prop-book{display:block}
   .buddy.mood-pin .prop-pin{display:block}
   /* svg transform origins, so a blink or a sparkle scales from its own centre */
-  .sun-face path,.buddy-face path{transform-box:fill-box;transform-origin:50% 50%}
+  .sun-face path,.buddy-face path{transform-origin:50% 50%}
   /* cards tilt in 3d on a pointer device */
   .cond-grid,.steps{perspective:1000px}
   @media (prefers-reduced-motion: reduce){
@@ -391,7 +416,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.02h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.37c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.83 2.42 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.22-8.24 8.22Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.1-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.41-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.17 1.72 2.62 4.16 3.68.58.25 1.04.4 1.39.51.59.18 1.12.16 1.54.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
             Book a consultation
           </a>
-          <a class="link-plain" data-tel href="tel:+917669140719">Or WhatsApp +91 76691 40719</a>
+          <a class="link-plain" data-tel href="tel:+917669140719">Or call +91 76691 40719</a>
         </div>
         <ul class="hero-trust hero-anim">
           <li class="pill"><i></i>MBBS &middot; MD Pathology</li>
@@ -738,7 +763,7 @@
           </li>
           <li>
             <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#FFC53D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 19 6v5.6c0 4.3-2.9 7.3-7 8.8-4.1-1.5-7-4.5-7-8.8V6z"/><path d="M9 12l2.2 2.2L15.4 10"/></svg></span>
-            <span><b>NMC registered</b><span>Registration number to be added</span></span>
+            <span><b>Registered medical practitioner</b><span>NMC / State Medical Council registration number: <span data-clinic="regNumber">to be added</span></span></span>
           </li>
           <li>
             <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#FFC53D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10.5H9.6L5 19.5v-3.5H4z"/><path d="M8 10.5h8"/></svg></span>
@@ -763,7 +788,7 @@
           <li>Acupuncture is generally considered safe when it is done by an experienced, trained practitioner using sterile single-use needles.</li>
         </ul>
         <p style="margin:1rem 0 0"><strong>So on this site, acupuncture for MS is written as support</strong> &mdash; comfort, fatigue and quality of life &mdash; and never as a cure, never as a replacement for your neurologist, and never as a promise about what your body will do.</p>
-        <div class="src">Sources (read 13 November 2026): Multiple Sclerosis Trust, &ldquo;Acupuncture&rdquo; (A&#8211;Z of MS), last updated 1 April 2022 &mdash; <a href="https://mstrust.org.uk/a-z/acupuncture" rel="noopener" target="_blank" style="color:#E85D18;font-weight:700">mstrust.org.uk/a-z/acupuncture</a>. Acupuncture: effectiveness and safety, NCCIH, US National Institutes of Health &mdash; <a href="https://www.nccih.nih.gov/health/acupuncture-what-you-need-to-know" rel="noopener" target="_blank" style="color:#E85D18;font-weight:700">nccih.nih.gov</a>.</div>
+        <div class="src">Sources (read 13 November 2026): Multiple Sclerosis Trust, &ldquo;Acupuncture&rdquo; (A&#8211;Z of MS), last updated 1 April 2022 &mdash; <a href="https://mstrust.org.uk/a-z/acupuncture" rel="noopener" target="_blank" style="color:#B2470F;font-weight:700">mstrust.org.uk/a-z/acupuncture</a>. Acupuncture: effectiveness and safety, NCCIH, US National Institutes of Health &mdash; <a href="https://www.nccih.nih.gov/health/acupuncture-what-you-need-to-know" rel="noopener" target="_blank" style="color:#B2470F;font-weight:700">nccih.nih.gov</a>.</div>
       </div>
     </div>
   </div>
@@ -936,7 +961,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="#top">
+        <a class="brand" href="#top" aria-label="Dr. Shruti Grover">
           <svg viewBox="0 0 44 44" aria-hidden="true" focusable="false">
             <circle cx="22" cy="22" r="21" fill="#FF7A2F"/>
             <path d="M14 19.5q3.4 4 6.8 0M23.2 19.5q3.4 4 6.8 0" stroke="#16203C" stroke-width="2.8" fill="none" stroke-linecap="round"/>
@@ -944,7 +969,7 @@
           </svg>
           <span><b>Dr. Shruti Grover</b><span>MBBS (University of Delhi / UCMS) &middot; MD Pathology (UCMS) &middot; Fellowship in Oncopathology (RGCI)</span></span>
         </a>
-        <p style="margin-top:.9rem;max-width:44ch">Integrative medicine practitioner &middot; Traditional Chinese Acupuncture &middot; Lifestyle medicine consultant &middot; Pathologist. NMC registration number: to be added.</p>
+        <p style="margin-top:.9rem;max-width:44ch">Integrative medicine practitioner &middot; Traditional Chinese Acupuncture &middot; Lifestyle medicine consultant &middot; Pathologist. Registered medical practitioner (NMC / State Medical Council). Registration number: <span data-clinic="regNumber">to be added</span>.</p>
       </div>
       <div>
         <b>Clinic</b>
@@ -993,10 +1018,10 @@
 </div>
 
 <!-- ======================= THE COMPANION ======================= -->
-<div class="buddy" id="buddy" aria-hidden="true">
-  <div class="buddy-bubble" id="buddy-bubble">Good morning. Let&rsquo;s begin gently.</div>
-  <a class="buddy-hit" data-wa href="https://wa.me/917669140719" rel="noopener" tabindex="-1">
-    <svg viewBox="0 0 100 100">
+<div class="buddy" id="buddy">
+  <div class="buddy-bubble" id="buddy-bubble" role="status">Good morning. Let&rsquo;s begin gently.</div>
+  <a class="buddy-hit" data-wa href="https://wa.me/917669140719" rel="noopener" aria-label="Book a consultation on WhatsApp">
+    <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
       <g class="buddy-rays" stroke="#FFC53D" stroke-width="6" stroke-linecap="round">
         <path d="M50 8v8"/><path d="M50 84v8"/><path d="M8 50h8"/><path d="M84 50h8"/>
         <path d="M20.5 20.5l5.7 5.7" transform="rotate(0 50 50)"/>
@@ -1063,6 +1088,7 @@ document.addEventListener('DOMContentLoaded', function () {
     address: 'Experion Windchants, Expressway, Choma, Block T, Sector 112, Dwarka, Gurugram, Haryana 122017',
     shortAddress: 'Sector 112, Dwarka',
     plusCode: 'G298+88',
+    regNumber: 'to be added',
     hospital: 'Gajraj Hospital',
     hospitalAddress: 'Opposite Civil Hospital, Gurugram',
     hospitalHours: '4:00 PM \u2013 6:00 PM',
@@ -1080,6 +1106,7 @@ document.addEventListener('DOMContentLoaded', function () {
   setText('address', CLINIC.address);
   setText('shortAddress', CLINIC.shortAddress);
   setText('plusCode', CLINIC.plusCode);
+  setText('regNumber', CLINIC.regNumber);
   setText('hospital', CLINIC.hospital);
   setText('hospitalAddress', CLINIC.hospitalAddress);
   setText('hospitalHours', CLINIC.hospitalHours);
@@ -1108,7 +1135,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var msg = document.getElementById('form-msg');
       msg.classList.add('show');
       msg.innerHTML = 'Thanks &mdash; this is a design demo, so the form is not connected yet. Please <a href="' + CLINIC.whatsapp + '" rel="noopener">message us on WhatsApp</a> or call ' + CLINIC.phoneDisplay + ' and we will confirm your slot.';
-      gsap.fromTo(msg, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .5, ease: 'power2.out' });
+      if (window.gsap) { gsap.fromTo(msg, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .5, ease: 'power2.out' }); }
     });
   }
 
@@ -1128,6 +1155,9 @@ document.addEventListener('DOMContentLoaded', function () {
   gsap.registerPlugin(ScrollTrigger);
 
   /* ===================== HERO INTRO (about 3 seconds) ===================== */
+  /* The sparkles start hidden (CSS) and GSAP sets their first frame, so they
+     cannot jump to the corner of the drawing. */
+  gsap.set('.sparkle', { scale: 0, opacity: 0, transformOrigin: '50% 50%' });
   var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
   tl.fromTo('#hero-sun', { y: 168, opacity: .35 }, { y: 0, opacity: 1, duration: 1.9, ease: 'back.out(1.25)' }, 0.02)
     .fromTo('.clouds-back .cloud', { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 1.3, stagger: 0.12 }, 0.15)

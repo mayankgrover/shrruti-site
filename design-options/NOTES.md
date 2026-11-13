@@ -2,39 +2,36 @@
 
 Prepared 13 November 2026 for Mayank, to pick one direction for the clinic homepage.
 
-- `index.html` - chooser page with the four options, in the order 2, 3, 5, 6.
-- `2/index.html`, `3/index.html`, `5/index.html`, `6/index.html` - the four homepages. Each one is a single
-  self-contained file: inline CSS, Google Fonts, no framework, no build step, relative links only.
-- `7/index.html` - **option 7, Sunrise**, added on 13 November 2026: the illustrated and animated option (a sun that rises
-  out of the clouds, a character for every condition, a companion that travels with the reader). Also one self-contained
-  file, also with no framework and no build step. The chooser page is updated by the orchestrator, not by this option.
+- `index.html` - chooser page with the six options, in the order 7, 8, 9, 10, 2, 3.
+- `2/index.html`, `3/index.html`, `7/index.html`, `8/index.html`, `9/index.html` - five of the homepages, one file each:
+  inline CSS, Google Fonts, no framework, no build step, relative links only.
+- `10/index.html` - the sixth homepage. Same rules, plus `10/assets/`, the 704 KB of 3D renders it needs.
+- Option 7, **Sunrise**, is the illustrated and animated option (a sun that rises out of the clouds, a character for
+  every condition, a companion that travels with the reader). One self-contained file, no framework and no build step.
+  The chooser page is updated by the orchestrator, not by this option.
 - `shots/` - full-page screenshots at 1440px and 390px, `opt*-390-top.png` (first phone screen, with the sticky
   bar in place), `opt*-1440-mid.png` and `opt*-390-mid.png` (mid-scroll, so the sticky and scroll-driven states are
   visible) and `opt*-preview.jpg` (the card image on the chooser page).
 - `../../scripts/tools/cdp.js` and `../../scripts/tools/shots.sh` - the small Chrome driver used to take the shots
   and to measure the pages. No npm install needed.
 
-Options 1 (Clinical calm) and 4 (Doctor-first authority) were **deleted on 13 November 2026**: Mayank's feedback was
-"These don't look like modern options at all." They are replaced by two motion-led options, 5 (Flow) and 6 (Pulse).
+All six pages carry the same facts, in the same order: header, hero, her story (MS), conditions treated, how a
+first visit works, credentials, location, FAQ, booking (WhatsApp + form), footer, sticky "Book on WhatsApp" bar
+on mobile. Options 7 to 10 carry the same facts in the same order, with one difference: every picture on them is an
+illustration or a 3D render we made, not a stock photo. Options 7 and 10 answer five FAQ questions, the rest answer four.
 
-All four pages carry the same facts, in the same order: header, hero, her story (MS), conditions treated, how a
-first visit works, credentials, location, FAQ (4), booking (WhatsApp + form), footer, sticky "Book on WhatsApp" bar
-on mobile. Option 7 carries the same facts in the same order (it has five FAQ entries instead of four, and every picture
-on it is an illustration we drew rather than a stock photo).
-
-**What the review round changed (13 November 2026).** The reviewer's ten findings are listed at the end of this file,
-under **Review notes**. The big ones: option 5's sticky story now really sticks (it was taller than the space it had
-to stick in, so the browser dropped the offset); option 6's headline no longer reads as a treatment claim; every page
-now carries the NMC AI source mark, worded as *pending review* because Dr. Grover has not read the copy yet; the
-390px full-page shots were retaken without the fixed WhatsApp bar, which had been painted in the middle of the page;
-the location strings are now driven by one `CLINIC` object instead of being copied around; and LCP and CLS are now
-measured with Lighthouse instead of guessed.
+**What the review round changed (13 November 2026).** The findings are listed at the end of this file, under **Review
+notes**. The big ones, across the whole set: every page now carries the NMC AI source mark, worded as *pending
+review* because Dr. Grover has not read the copy yet; the 390px full-page shots are taken without the fixed WhatsApp
+bar, which used to be painted in the middle of the page; the location strings are driven by one `CLINIC` object
+instead of being copied around; the unsourced "most asked about" wording is gone; and LCP and CLS are measured
+instead of guessed. The four illustrated options were then checked the same way, one option at a time.
 
 ## How to review
 
 1. Open `index.html` in a browser (or serve the folder: `python3 -m http.server`).
 2. Open each option on a phone (390px) and a laptop (1440px). The screenshots in `shots/` are the same thing.
-3. Pick one, or say "option 2 but with option 5's motion". Mixed directions are normal and cheap to do.
+3. Pick one, or say "option 2 but with option 7's motion". Mixed directions are normal and cheap to do.
 4. Note anything that reads wrong for a family in Delhi/NCR: language, tone, how much is on the page.
 
 ---
@@ -69,15 +66,15 @@ tree. All were captured and read on **13 November 2026**.
 
 | File | Site | URL | What it shows |
 |---|---|---|---|
-| `research/mobbin/web-superpower-dark-glow-hero.webp` | Superpower | https://superpower.com/ | The dark hero: a soft amber glow behind a silhouette, one plain promise, two buttons and a three-item fact row. The model for option 6's hero. |
+| `research/mobbin/web-superpower-dark-glow-hero.webp` | Superpower | https://superpower.com/ | The dark hero: a soft amber glow behind a silhouette, one plain promise, two buttons and a three-item fact row. The reference for a hero built on one glowing object. |
 | `research/mobbin/web-superpower-photo-cards-with-data.webp` | Superpower | https://superpower.com/ | Photo cards that carry a number and a label - data beside the image instead of a caption. |
 | `research/mobbin/web-headspace-hero-floating-characters.webp` | Headspace | https://www.headspace.com/ | Characters that float in the hero while the words stay still - "one slow thing, many quiet things". |
 | `research/mobbin/web-headspace-blob-character-banner.webp` | Headspace | https://www.headspace.com/ | A blob-shaped banner that moves behind a plain line of text. |
 | `research/mobbin/web-headspace-care-character-accordion.webp` | Headspace | https://www.headspace.com/ | An accordion where the open item keeps a character next to the answer. |
-| `research/mobbin/web-hims-bento-treatment-cards.webp` | Hims | https://www.hims.com/ | A grid of mixed-size treatment cards (four wide, three short) - the model for option 5's bento grid. |
+| `research/mobbin/web-hims-bento-treatment-cards.webp` | Hims | https://www.hims.com/ | A grid of mixed-size treatment cards (four wide, three short) - the model for the bento grid of small objects. |
 | `research/mobbin/ios-bevel-orb-character-checkin.webp` | Superpower (iOS) | https://superpower.com/ | A beveled orb used as a check-in control. |
 | `research/mobbin/ios-brilliant-floating-orbs-loader.webp` | Superpower (iOS) | https://superpower.com/ | Floating orbs as a loading state: the calm version of a particle effect. |
-| `research/mobbin/ios-insight-timer-calm-home.webp` | Superpower (iOS) | https://superpower.com/ | A quiet timer screen - the "slow breathing" reference for option 6's orb. |
+| `research/mobbin/ios-insight-timer-calm-home.webp` | Superpower (iOS) | https://superpower.com/ | A quiet timer screen - the "slow breathing" reference for the breathing discs. |
 | `research/mobbin/ios-opal-glowing-gem-score.webp` | Superpower (iOS) | https://superpower.com/ | A glowing gem used for a score - the "one bright object" idea. |
 | `research/mobbin/ios-tolan-character-companion.webp` | Superpower (iOS) | https://superpower.com/ | A companion character that reacts to a tap. |
 
@@ -114,21 +111,27 @@ tree. All were captured and read on **13 November 2026**.
 ### What we deliberately did not do
 
 - **No video hero.** It is the biggest weight cost and it competes with the H1 for the LCP.
-- **No 3D / WebGL.** web.dev's animations guide is the rule we follow: "An animation that moves an element using
+- **No live 3D / WebGL.** web.dev's animations guide is the rule we follow: "An animation that moves an element using
   something other than transform is likely to be slow" and "Avoid properties that trigger layout or paint"
-  (https://web.dev/articles/animations-guide, read 13 November 2026). So every animation on options 5 and 6 moves
-  `transform` and `opacity` only.
-- **No external motion library.** Lenis or Motion would be allowed (one small library, pinned version), but zero
-  libraries is strictly better here: no CDN request, no version drift, and the whole motion layer stays tiny.
+  (https://web.dev/articles/animations-guide, read 13 November 2026). So the animations on these pages are built on
+  `transform` and `opacity` wherever they can be. The one exception is `stroke-dashoffset` on the drawn lines, which
+  is a paint-only property and causes no layout. The 3D on option 10 is **pre-rendered** to images on this server, so
+  the page ships pictures, not a 3D engine.
+- **One external library, pinned.** Options 7 to 10 load GSAP 3.13 from jsdelivr with the version pinned (core and
+  ScrollTrigger, plus MorphSVG on option 8). Nothing else is loaded: no jQuery, no Lenis, no Motion, no other CDN
+  request. Options 2 and 3 load no library at all.
 - **No parallax on text.** Parallax is applied to a decorative layer only, and is switched off on small screens.
 - **Nothing that hides content behind JavaScript.** The HTML always contains the words; JavaScript only adds motion.
 - **No animation under `prefers-reduced-motion: reduce`.** MDN: "Readers with vestibular motion disorders may wish to
   enable the reduce motion feature on their device before viewing the animation" - scaling or panning large objects can
   be vestibular triggers (https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion, read
-  13 November 2026). On both pages the reduced-motion state is the full, static, complete page.
+  13 November 2026). On every page the reduced-motion state is the full, static, complete page.
 
 ---
-## 2. The four options
+## 2. The six options
+
+The chooser page (`index.html`) shows them in the order to review them: 7, 8, 9, 10, 2, 3. They are written down here
+in number order.
 
 ### Option 2 - Warm editorial (`2/index.html`)
 
@@ -141,46 +144,15 @@ tree. All were captured and read on **13 November 2026**.
 
 ### Option 3 - Modern wellness (`3/index.html`)
 
-- **Idea:** soft sage and sand, rounded shapes, gentle photos. The friendliest of the four and the easiest to read on a phone. Good if the audience skews towards women and first-time patients.
+- **Idea:** soft sage and sand, rounded shapes, gentle photos. The friendliest of the six and the easiest to read on a phone. Good if the audience skews towards women and first-time patients.
 - **Fonts:** Outfit (500/600/700) for headings, Nunito Sans (400/600/700) for body.
 - **Colours:** sand `#F7F2E9`, card white, sage `#E3EADF`, green `#4E6B4A` (hover `#3C5438`), peach `#F0D6C2`, ink `#2F3A33`, muted `#5E6B60`.
 - **Layout:** rounded 28px image with a floating booking card; condition cards with circular number badges; step cards with peach number circles; checklist rows for "what she works with" and credentials; accordion FAQ with rounded cards; one big white booking card.
 - **Inspired by:** Herb + Ohm (big warm photo, obvious booking button), Modern Acupuncture (condition-first structure), Yinova Center (soft, calm palette).
-- **Watch out:** wellness styling can slide into vague. Every card here still says something concrete.
-
-### Option 5 - Flow (`5/index.html`) - new, motion-led, light
-
-- **Idea:** the premium-startup look. White and airy, one big confident headline that arrives word by word, a soft gradient-mesh (aurora) hero, a meridian-line illustration that draws itself as you scroll, a bento grid for conditions, and a sticky scroll story for her MS journey.
-- **Fonts:** Plus Jakarta Sans (400-800, variable) for everything, Instrument Serif italic for two words of the headline and for the pull lines.
-- **Colours:** white `#FFFFFF`, soft grey section `#F6F7FB`, ink `#0B1020`, muted `#5B6478`, violet `#6D5EF8`, brand `#4F46E5`, cyan `#22B8CF`, mint `#5EEAD4`, WhatsApp green `#0F7A3D`.
-- **Layout:** centred hero (eyebrow pill, huge headline, sub-line, two buttons, four fact chips) over the aurora; a full-width meridian band under it; a story section that opens with the heading "How she got here", then a two-column grid: a sticky column on the left (photo + the "What she works with" panel) and five story steps on the right; a six-column bento with 2- and 3-column cards, one tall feature card and two tinted cards; three first-visit cards under a line that draws; credentials list beside the MS evidence note; two location cards; native `details` FAQ; a dark WhatsApp panel beside the form.
-- **Motion (all of it, and what each one costs):**
-  - Aurora: three `radial-gradient` circles drifting on `transform` only, 27-39 s loops. No blur filter, so nothing re-rasterises.
-  - Headline: each word masked and lifted into place with a 60 ms stagger, CSS keyframes, under 1.1 s in total (the stagger was shortened from 80 ms in the review round so the headline is readable sooner).
-  - Meridian band: an inline SVG whose paths draw themselves with `stroke-dashoffset` on a **scroll-driven** CSS timeline (`animation-timeline: view()`). `pathLength="1"` normalises every path, so one keyframe draws all of them. Without scroll-timeline support the drawing is simply already finished.
-  - First-visit line: the same trick on a short SVG rule.
-  - Scroll reveals: one IntersectionObserver adds `.in` to every `[data-reveal]`. A scroll sweep backs it up (anything already at or above the fold is shown), so a missed element can never stay invisible - and nothing below the fold is shown early.
-  - Sticky story: `position: sticky` at `top: 88px`, capped to `max-height: calc(100vh - 104px)` with `overflow-y: auto`, plus a second observer that marks the step crossing the middle of the screen as the active one; the others sit at 55% opacity. The photo is `clamp(140px, 18vh, 240px)` so the whole column is shorter than the space it has to stick in - see Review notes, finding 1.
-  - Bento hover: a 6 px lift and a gradient layer that fades in (`transform` + `opacity` only).
-- **Inspired by:** Function Health (plain promise, calm grid, numbered steps), Vercel and Resend (hairline borders, radial glows, cards that lift), Stripe (gradient accents), the mixed-size treatment-card grid on Hims (`research/mobbin/web-hims-bento-treatment-cards.webp`), and the big-type-plus-italic-serif headline style that modern startup sites keep returning to.
-- **Watch out:** the sticky story only works above 980px; on a phone it is a normal stacked list. The dimmed steps are 55% opacity, not 40%, so they stay readable.
-
-### Option 6 - Pulse (`6/index.html`) - new, motion-led, dark
-
-- **Idea:** dark, cinematic and bold, but calm - a doctor, not a nightclub. A deep near-black page with one breathing orb behind the headline, hairline grid, drifting coloured glows, a marquee of the conditions she treats, numbers that count up, and cards that tilt slightly under the pointer.
-- **Fonts:** Space Grotesk (400-700, variable) for headings and UI, Inter (400-600, variable) for body text.
-- **Colours:** base `#08090F`, raised surface `#12141F`, ink `#F3F5FA`, body text `#CDD2E2`, muted `#969DB2`, mint `#5EEAD4`, violet `#A78BFA`, amber `#FBBF74`, WhatsApp green `#25D366` with near-black text.
-- **Layout:** centred hero over the orb; a three-number stat band (12 areas of care listed on the page, 2 places in Gurugram, 3 degrees and fellowships); the conditions marquee; a story section that opens with the heading "How she got here" and then two columns (photo + "what she works with" panel on the left, a five-step timeline on the right); a three-column conditions grid; three first-visit cards; credentials list beside the MS evidence note; two location cards; native `details` FAQ; a glass WhatsApp panel beside the form.
-- **Motion (all of it, and what each one costs):**
-  - Breathing orb: one blurred-free radial gradient scaling and fading on a 7 s loop, plus three "ping" rings that expand and fade on the same 7 s cycle, 2.33 s apart.
-  - Glows: three large radial gradients drifting on `transform`, 30-42 s loops, plus eight small motes floating up and fading.
-  - Marquee: one duplicated track translating by -50% over 42 s, edge-masked, `aria-hidden`.
-  - Pulse line: an ECG-style SVG rule between the marquee and the story that draws itself on a **scroll-driven** CSS timeline, the same `stroke-dashoffset` trick as option 5.
-  - Counters: `requestAnimationFrame` easing from 0 to the real number over 1.1 s when the band scrolls into view. The real numbers are in the HTML, so the page is correct without JavaScript.
-  - Card tilt: pointer-driven `rotateX`/`rotateY` of at most 4-5 degrees, fine pointers only, disabled under reduced motion.
-  - Reveals and the header hairline: as option 5 (same observer, same scroll sweep).
-- **Inspired by:** Linear (dark, precise, product-led), Superpower (dark glow hero, layered panels - `research/mobbin/web-superpower-dark-glow-hero.webp`), Vercel (radial glows, marquee, hairline grid), Headspace (calm, friendly motion), Function Health (stat counters).
-- **Watch out:** dark pages can read as less welcoming to an older first-time patient. The type is large, the copy is plain, and the WhatsApp button is the brightest thing on the page.
+- **Watch out:** wellness styling can slide into vague. Every card here still says something concrete. One open item:
+  the pull quote still reads "She treats the condition she lives with", the exact line the review round rewrote
+  elsewhere as an outcome claim (see section 3). It should be reworded if this option is picked; the option files were
+  not touched in this pass.
 
 ### Option 7 - Sunrise (`7/index.html`) - new, illustrated and animated
 
@@ -198,7 +170,9 @@ page.
   swap costs no layout shift.
 - **Colours:** sky `#FFE08A` to `#FFB02E` (the hero band), cream `#FFF6E9`, paper `#FFFDF8`, sun orange `#FF7A2F` with
   `#E85D18` for the shaded half, peach `#FFDCBF`, blush `#FFB49E`, ink navy `#16203C` (with `#2B3A5E` and `#55648A` for
-  body text), teal `#3E8E82` for the breathe band and the small tags, sand `#F3E3C8` for hairlines, WhatsApp green `#25D366`.
+  body text), teal `#3E8E82` for the small tags and the darker `#2C6B62` for the breathe band, sand `#F3E3C8` for
+  hairlines, WhatsApp green `#25D366`. Text orange is `#B2470F`: `#E85D18` on cream measured 3.26:1, so it is only
+  used for fills now.
 - **Layout:** sticky header (transparent over the yellow sky, turning cream with a blur once you scroll); hero with the
   eyebrow, the headline *Feel at home in your body again.*, one line of plain English, a navy pill button, a WhatsApp
   link and three fact pills, with the sun scene beside it (below it on a phone); a navy marquee of what she treats; her
@@ -257,14 +231,26 @@ page.
     https://www.figma.com/blog/building-a-design-system-that-breathes-with-headspace/ - the same colour and motion tokens
     idea, applied here as CSS custom properties.
 - **Lottie:** not used. Every animation is our own SVG plus CSS, so there is no third-party licence to record.
-- **Weight (measured 13 November 2026):** the page is one HTML file, 94 KB, of which **28 KB is inline SVG** (the budget is
-  120 KB). JavaScript is **50.2 KB gzipped in total**: GSAP 3.13 core 28.2 KB + ScrollTrigger 17.8 KB (both pinned to
-  `cdn.jsdelivr.net/npm/gsap@3.13.0`) + the page's own script 4.2 KB. The budget is 80 KB gzipped per page. CSS is 24.8 KB
-  raw / 6 KB gzipped, inline.
-- **The motion recordings:** `shots/opt7-motion-390.mp4` (390x844, 20.6 s, 399 frames) and `shots/opt7-motion-1440.mp4`
-  (1440x900, 23.0 s, 496 frames), with the still frames at 0 s, 1 s, 2 s, 4 s and mid-scroll next to them. They were made
-  with `scripts/tools/motion.js`, which drives the same headless Chrome as `scripts/tools/cdp.js` over the DevTools
-  protocol (`Page.startScreencast`) and stitches the frames with ffmpeg. No Playwright download was needed.
+- **Free assets (3D models, stock photos):** not used. Option 7 draws everything itself, so there is no third-party
+  licence to record, no `credits.jsonl` and no credit line in the footer. The task file allows a pre-rendered 3D cloud
+  scene here, but the hand-drawn SVG clouds are the same idea, weigh 0 KB to download and can be animated frame by frame,
+  which a still cannot.
+- **Weight (measured 13 November 2026, after the round-2 fixes):** the page is one HTML file, 97.1 KB, of which
+  **28.7 KB is inline SVG** in 52 blocks (the budget is 120 KB). JavaScript is **50.6 KB gzipped in total**: GSAP 3.13 core
+  28.2 KB + ScrollTrigger 17.8 KB (both pinned to `cdn.jsdelivr.net/npm/gsap@3.13.0`) + the page's own script 4.6 KB.
+  The budget is 80 KB gzipped per page. CSS is 27.0 KB raw / 6.8 KB gzipped, inline.
+- **Speed (measured 13 November 2026, Lighthouse mobile profile: 4x CPU, Slow 4G, after the round-2 fixes):** LCP
+  **216 ms at 1440x900** and **212 ms at 390x844**; CLS **0.018 at 1440x900** and **0.000 at 390x844**; FCP 216 ms and
+  212 ms. The small desktop shift is the webfont swap moving the header links sideways; see the review notes below.
+- **The motion recordings:** `shots/opt7-motion-390.mp4` (390x844, 18.21 s, 1070 frames) and
+  `shots/opt7-motion-1440.mp4` (1440x900, 18.27 s, 1077 frames), with the still frames at 0 s, 1 s, 2 s, 4 s and
+  mid-scroll next to them (`-f0s.png`, `-f1s.png`, `-f2s.png`, `-f4s.png`, `-mid.png`). They were made with
+  `scripts/tools/motion.js`, which drives the same headless Chrome as `scripts/tools/cdp.js` over the DevTools
+  protocol (`Page.startScreencast`) and stitches the frames with ffmpeg. The stills are cut out of the finished video
+  with `select=gte(t,T)`, which decodes in order and takes the first frame at or after the wanted second, and the
+  seconds are counted from the marker the page writes when the intro starts (`window.__introT`), so the frames are the
+  intro and not a later moment. No Playwright download was needed. Each recording leaves a small `-meta.json` next to
+  it, so the still frames can be cut again at any other moment.
 - **Watch out:** the hero band is a colour field, so the page has no photograph of her at all - that is deliberate (NMC
   guideline 9.2, see section 3), but it means the page has to earn trust with type, credentials and the evidence note.
   The companion's bubble is a floating layer and can sit over the right-hand gutter for a few seconds; it is
@@ -420,6 +406,9 @@ you go. It still has to read as a doctor's clinic: clean type panels over the sc
   The sky starts peach at dawn and cross-fades to a calm blue morning over the first half of the walk; a warm light
   overlay comes up with it. The clinic building waits at the end of the road, and the walker arrives holding a **BOOK**
   sign. All the writing sits in cream cards on the right, so the world and the walker keep the left side to themselves.
+- **It reads without JavaScript:** every word is in the HTML, the walker and the six signposts have a hand-written
+  place in the markup that the script then replaces with an exact one, and if the GSAP files never arrive the page still
+  shows the whole landscape, the road, the walker and the first signpost. Only the camera and the sky are missing.
 - **How the camera works (the interesting bit):** the scene is one inline SVG with `viewBox="0 0 1440 900"` and
   `preserveAspectRatio="xMidYMid slice"`, so it fills any screen without stretching. The road is a real SVG path; the
   walker's position comes from `path.getPointAtLength()` (no motion-path plugin needed), and the tangent of the road
@@ -464,7 +453,7 @@ you go. It still has to read as a doctor's clinic: clean type panels over the sc
     circle runs 4 seconds in and 4 seconds out with the label swapping between *Breathe in* and *Breathe out*.
   - **Reduced motion:** `prefers-reduced-motion: reduce` removes every timeline, every loop and every travel. The
     landscape stays exactly where it is, the road is already drawn, and the page reads as a normal page.
-- **Medical and NMC wording:** the same rules as options 5-8, with the wording in section 3 of this file. Acupuncture for
+- **Medical and NMC wording:** the same rules as options 7 and 8, with the wording in section 3 of this file. Acupuncture for
   MS is written as *support* only, the evidence note links to its source, there are no testimonials, no ratings, no
   before-and-after, no "best doctor" wording, no prices, no urgency and no offers, the page carries the AI source mark
   (guideline 7.2) and the medical-review-pending line, and the walker is not presented as a portrait of Dr. Grover
@@ -495,7 +484,7 @@ you go. It still has to read as a doctor's clinic: clean type panels over the sc
   - The clinic address, the plus code and the two places come from the Google listing read on 13 November 2026 and are
     held in one config object, so a move is a one-line change.
 - **Lottie:** not used. Every animation is our own SVG plus CSS, so there is no third-party licence to record.
-- **Weight (measured 13 November 2026):** the page is one HTML file, 70 KB, of which **21.5 KB is inline SVG** (the budget
+- **Weight (measured 13 November 2026):** the page is one HTML file, 70.5 KB, of which **21.9 KB is inline SVG** (the budget
   is 120 KB). JavaScript is **49.3 KB gzipped in total**: GSAP 3.13 core 28.2 KB + ScrollTrigger 17.8 KB (both pinned to
   `cdn.jsdelivr.net/npm/gsap@3.13.0`) + the page's own script 3.3 KB. The budget is 80 KB gzipped per page. CSS is
   17.9 KB raw / 5.2 KB gzipped, inline. The whole HTML without CSS and JavaScript is 10.7 KB gzipped.
@@ -512,18 +501,80 @@ you go. It still has to read as a doctor's clinic: clean type panels over the sc
   is the one in the config.
 
 
+### Option 10 - Soft 3D (`10/index.html`) - new, illustrated and animated
+
+Mayank's note (13 November 2026): option 7 (a flat Headspace sun, warm yellow) and option 8 (a flat blob character,
+cream and coral) looked "borderline the same". Option 9 is a storybook landscape with a walking character. Option 10 is
+the one that is **drastically different** from all three: a real 3D render, a centred hero, a bento grid and a
+scroll-scrubbed scene.
+
+- **Idea:** one matte 3D companion - a lilac pebble with two gentle eyes and a white halo ring - floats above the
+  headline in a centred, full-bleed hero. Below it, a bento grid where every condition has its own small 3D object,
+  glass cards, and a "first visit" section whose scene is a real 3D still life that turns as the reader scrolls.
+  No marquee strip, no headline-left/illustration-right split.
+- **Everything on the page is a real 3D render.** There is no flat illustration on this page: the companion, the
+  fourteen condition objects, the certificate, the two location drawings and the twenty-four frames of the scroll
+  scene were all rendered on this server with **67.js 0.16.0** from procedural scene recipes (lathe, sphere, torus,
+  curve, box, cylinder - no downloaded models), lit with a three-point studio rig and keyed off a flat magenta card
+  to a transparent WebP. The recipes are in `scripts/render/67-opt10.mjs`; the keying, cropping and encoding are in
+  `scripts/render/postprocess-opt10.sh` and `scripts/render/alpha-bbox.py`. Every asset is listed in
+  `10/assets/credits.jsonl` (all of them made for this project, so no third-party credit is owed).
+- **Fonts:** Inter Tight (400/500/600/700), a clean modern grotesk - not the rounded Headspace face, which options 7
+  and 8 use.
+- **Colours:** paper `#FBF9F5`, ink `#221C30`, lilac `#C9B8F2`, deep lilac `#5B3FA0`, mint `#A9E3CE`, sky
+  `#AECBEF`, peach `#F8C9A9`, rose `#F6B9C9`, one dark band `#241D33` for the evidence note.
+- **Layout:** centred hero (eyebrow, the 3D companion, the headline, the lede, two buttons, four fact chips) - no
+  marquee; a "breathe with me" band; her story with a sticky 3D companion card; the bento grid of nine condition
+  tiles plus a purple "not sure which one is yours?" WhatsApp card; the scroll-scrubbed "first visit" scene with
+  three steps and a progress bar; the dark evidence band with the sources; credentials; two locations; the FAQ; the
+  booking section (WhatsApp + the short form); the footer; the sticky mobile bar.
+- **Motion:**
+  - The hero intro is drawn in CSS (`html.js` rules), so the first frame and the animation start in the same place:
+    the companion rises and fades in over 0.85 s, the eyebrow, headline, lede, buttons and chips rise in turn. The
+    **text is painted on the first frame** and only moves with a transform, so the page is never an empty box and the
+    headline is not held back from the LCP.
+  - After the intro the companion floats: a 7.5 s `translateY` + `rotate` loop, transform only.
+  - The **first visit scene is scrubbed by the scroll**: 24 real 3D frames of a table-top still life (the companion,
+    two pebbles and a single needle on a soft round mat) with the camera arcing around it. GSAP 3.13 ScrollTrigger
+    (`scrub: 0.45`) advances the frames, with a plain scroll-listener fallback if the library does not load.
+  - A progress bar and a "Step 2 of 3" label follow the scroll; each step card lights up as it reaches the middle of
+    the screen, and on a phone the scene jumps to the frame for the step you are on.
+  - The **companion travels with the reader**: it is fixed in the bottom corner, it rises as you read, it says a
+    different line for each section, and tapping it opens WhatsApp. On a phone it sits inside the sticky bar so it can
+    never cover a line of text or a button.
+  - "Breathe with me" is a 8 s CSS scale loop (4 s in, 4 s out) with a label that changes with it.
+  - The condition tiles lift and tilt a few degrees under the pointer, on fine pointers only.
+- **References used (read 13 November 2026):** `research/mobbin/ios-bevel-orb-character-checkin.webp` (the halo orb
+  this page is modelled on), `research/mobbin/web-hims-bento-treatment-cards.webp` (the bento grid of small 3D
+  objects), `research/mobbin/ios-opal-glowing-gem-score.webp` (one bright object as the hero) and
+  `research/mobbin/motion-clay-3d-landscape-hero.webp` (the soft matte clay look).
+- **Weight:** the whole asset folder is 704 KB, of which 372 KB is the 24-frame scroll sequence (about 15 KB a
+  frame) and 224 KB is the 6 second WebM loop. The page itself loads one 19 KB still for the hero and the frames it
+  needs.
+  **JavaScript (measured 13 November 2026):** GSAP 3.13.0 is 72,435 bytes raw / 28,208 bytes gzipped and
+  ScrollTrigger 3.13.0 is 44,157 bytes raw / 17,820 bytes gzipped, both from jsdelivr and pinned. Our own inline
+  script is 12.7 KB raw (about 3.5 KB gzipped). Total about 49 KB gzipped, inside the 80 KB budget. There is no
+  inline SVG illustration on this page at all - every picture is a 3D render - so the SVG budget is unused. The rest
+  of the motion is CSS. The Google Fonts stylesheet is a normal, render-blocking `<link>`, which is deliberate here:
+  it means the webfont is in place before the first paint, so the headline never reflows when it arrives. Measured on
+  a throttled phone (Slow 4G, 4x CPU): **CLS 0.000**.
+- **Watch out:** the alpha channel of a VP9 WebM cannot be muxed by the ffmpeg on this server (the WebM muxer does not
+  write the alpha flag), so the hero uses the still plus a CSS float and the WebM is shipped as the loop export
+  rather than as a `<video>`. The 24 scrub frames are the real 3D motion on this page.
+
+
 ## 3. Medical and NMC compliance (why some things are deliberately missing)
 
 Source for the rules below: **National Medical Commission, "Guidelines on Ethical Advertising and Public Communication by hospitals/medical institutions and Registered Medical Practitioners", R-13014/01/2024-Ethics**, https://nmc.org.in/whats-new/download/1874 (read 13 November 2026). Page numbers below are from that PDF.
 
 - **No testimonials, no star ratings.** Explanation V (p.4): an RMP shall not solicit, buy, publish or share patient reviews, ratings, testimonials, endorsements or recommendations for professional promotion. So the "5.0 from 14 reviews" on the Google listing is **not** on the site. This also rules out review widgets and testimonial sections in later pages.
-- **No superiority or outcome claims.** Guideline 8.1(iii) (p.8) bans "Guaranteed cures", "Best doctors", "No.1 Specialist", "100% success", "painless treatment", "Miracle treatment". Guideline 8.1(ix) bans "best", "No.1", "leading", "most trusted", "top", "number one", "unmatched". None of these words appear on any of the four pages.
+- **No superiority or outcome claims.** Guideline 8.1(iii) (p.8) bans "Guaranteed cures", "Best doctors", "No.1 Specialist", "100% success", "painless treatment", "Miracle treatment". Guideline 8.1(ix) bans "best", "No.1", "leading", "most trusted", "top", "number one", "unmatched". None of these words appear on any of the six pages.
 - **No case studies or before/after.** Guideline 8.1(v) (p.8).
 - **No prices and no offers.** The brief decides no prices on the site, and Guideline 8.1(x) (p.8) bans free procedures, discounts and anything likely to encourage unnecessary consultation.
 - **Full name and qualifications on every page.** Explanation III (p.4): an RMP publishing electronic-media content should disclose name, qualifications, registration status and SMR/NMR registration number. Each page footer carries the name, all three qualifications and a line for the registration number (**to be added - Mayank or Dr. Grover**).
 - **Her own photograph.** Guideline 9.2 (p.10): use of the photograph of an RMP shall not be permitted where it constitutes self-advertisement, solicitation or promotional publicity. That is why no page shows a stock person presented as her, and no page shows a photograph of her. Decide with Dr. Grover (and, if needed, a lawyer) before any photo of her goes on the site. Guideline 7.2(b) also forbids creating a synthetic person, image or endorsement.
 - **Patient privacy.** Guideline 6.1 and 6.2 (p.6): patient photographs, treatment details, testimonials and before-after pictures cannot be used in advertising, and consent does not make them allowed. So: stock photos only, each captioned "Stock photo. The person shown is a model, not a patient", and no patient story on the homepage.
-- **AI content.** Guideline 7.2(a) (p.6): AI-generated or AI-assisted content must not be used to create or disseminate misleading or unverifiable representations about diagnosis, treatment, outcomes, qualifications or patient experience. Guideline **7.2** (p.6) also says AI-assisted promotional content **must carry the source mark, explicitly stating that the origin of the content is AI**. Every one of the four pages now carries it, in the footer:
+- **AI content.** Guideline 7.2(a) (p.6): AI-generated or AI-assisted content must not be used to create or disseminate misleading or unverifiable representations about diagnosis, treatment, outcomes, qualifications or patient experience. Guideline **7.2** (p.6) also says AI-assisted promotional content **must carry the source mark, explicitly stating that the origin of the content is AI**. Every page now carries it, in the footer:
 
   > Medical information on this page was written with AI assistance and is awaiting medical review by Dr. Shruti Grover, MBBS (University of Delhi), MD Pathology (UCMS), Fellowship in Oncopathology (RGCI). It is general information, not a diagnosis. Your own plan comes after a consultation.
 
@@ -533,7 +584,7 @@ Source for the rules below: **National Medical Commission, "Guidelines on Ethica
   replaced by "Medical content reviewed by Dr. Shruti Grover - Last updated <date>".
 
 - **Medical review date.** There is no review date yet, so the footer says "Medical review pending - Design draft, 13 November 2026". The date must be set by Dr. Grover, and re-set whenever the copy changes.
-- **Motion is not advertising, but the claims are still checked.** The count-up numbers on option 6 (12, 2, 3) are counts of the items on the page itself - areas of care listed, places in Gurugram, and degrees and fellowships from the brief. They are not success rates, not patient numbers and not years of experience. Nothing on any page says she is asked about certain conditions most often: that claim is not in the brief and has no source, so the copy says "the common reasons people come in" instead.
+- **Motion is not advertising, but the claims are still checked.** The numbers a page shows are counts of the items on that page - the areas of care listed, the places in Gurugram, and the degrees and fellowships from the brief. They are not success rates, not patient numbers and not years of experience. Nothing on any page says she is asked about certain conditions most often: that claim is not in the brief and has no source, so the copy says "the common reasons people come in" instead.
 
 ### The MS wording (the one claim that needed care)
 
@@ -545,9 +596,9 @@ Every page says acupuncture for MS is **support**, never a cure, and names the l
 - A 2021 review found traditional and scalp acupuncture "appeared to help improve symptoms including fatigue, pain, walking difficulties and bladder problems".
 - A 2018 review found "there wasn't enough evidence that acupuncture (including electroacupuncture) could reduce spasticity in MS".
 
-So the pages promise comfort and quality of life, tell the patient to keep their neurologist, and put the source in front of them. Options 5 and 6 both carry the full evidence note, not just a link.
+So the pages promise comfort and quality of life, tell the patient to keep their neurologist, and put the source in front of them. Every option carries the full evidence note, not just a link.
 
-One headline was rewritten in the review round for this reason. Option 6 used to read **"She treats the condition she lives with."**, which is an outcome claim (8.1.vi) and contradicted the FAQ on the same page. It now reads **"A doctor who knows MS from the inside."**, and the og:description was changed to match.
+One headline was rewritten in the review round for this reason. It used to read **"She treats the condition she lives with."**, which is an outcome claim (8.1.vi) and contradicted the FAQ on the same page. It now reads **"A doctor who knows MS from the inside."**, and the og:description was changed to match.
 
 ---
 
@@ -568,7 +619,7 @@ var CLINIC = {
 };
 ```
 
-**What is config-driven today, on all four pages:**
+**What is config-driven today, on all six pages:**
 
 | Value | Where it appears |
 |---|---|
@@ -578,7 +629,7 @@ var CLINIC = {
 | `plusCode` | the location card, the no-JavaScript line |
 | `hospital`, `hospitalAddress`, `hospitalHours` | the location card, the FAQ, the footer, the no-JavaScript line |
 | `phone`, `phoneDisplay`, `whatsapp`, `maps` | every `tel:` and `wa.me` link and the map button |
-| `street`, `city`, `state`, `pincode` | the JSON-LD `PostalAddress` (options 5 and 6 rewrite the structured data from the same object at load) |
+| `street`, `city`, `state`, `pincode` | the JSON-LD `PostalAddress` (options 7, 8 and 10 rewrite the structured data from the same object at load; options 2, 3 and 9 write it by hand) |
 
 **What is NOT config-driven today, and why:**
 
@@ -603,68 +654,73 @@ design options are the demo of that rule, not the finished mechanism.
 
 ### JavaScript and page weight (measured 13 November 2026)
 
-| Page | Inline JS (raw) | Inline JS (gzip) | External JS | HTML (raw) | HTML (gzip) | Webfont files the browser downloads (latin subset, woff2) | Images |
-|---|---|---|---|---|---|---|---|
-| 2 | 2,448 B | 1,120 B | none | 33,996 B | 9,550 B | Fraunces + Inter | 2 stock photos, lazy |
-| 3 | 2,448 B | 1,120 B | none | 36,331 B | 10,022 B | Outfit + Nunito Sans | 2 stock photos, lazy |
-| **5 Flow** | **6,456 B** | **2,280 B** | **none** | 58,872 B | 15,898 B | 54,496 B (Plus Jakarta Sans 38,812 + Instrument Serif italic 15,684) | 1 stock photo, lazy |
-| **6 Pulse** | **7,832 B** | **2,688 B** | **none** | 60,321 B | 15,663 B | 70,752 B (Inter 48,432 + Space Grotesk 22,320) | 1 stock photo, lazy |
+| Page | Page file | JavaScript (gzip) | External JS | Webfont files the browser downloads (latin subset, woff2) | Images |
+|---|---|---|---|---|---|
+| 2 Warm editorial | 33,996 B HTML (9,550 B gzip) | 1,120 B inline | none | Fraunces + Inter | 2 stock photos, lazy |
+| 3 Modern wellness | 36,331 B HTML (10,022 B gzip) | 1,120 B inline | none | Outfit + Nunito Sans | 2 stock photos, lazy |
+| 7 Sunrise | 97.1 KB HTML, of which 28.7 KB is inline SVG | 50.6 KB in total: GSAP core 28.2 + ScrollTrigger 17.8 + the page's own 4.6 | GSAP 3.13 from jsdelivr, pinned | Figtree + Nunito | none (all SVG) |
+| 8 Qi friends | 78.0 KB HTML, of which 14.6 KB is inline SVG | 59.3 KB in total: GSAP core 28.2 + ScrollTrigger 17.8 + MorphSVG 7.5 + the page's own 5.8 | GSAP 3.13 from jsdelivr, pinned | Figtree | none (all SVG) |
+| 9 The path | 70.5 KB HTML, of which 21.9 KB is inline SVG | 49.3 KB in total: GSAP core 28.2 + ScrollTrigger 17.8 + the page's own 3.3 | GSAP 3.13 from jsdelivr, pinned | Bricolage Grotesque + Figtree | none (all SVG) |
+| 10 Soft 3D | 71.5 KB page file, plus 704 KB of assets | about 49 KB: GSAP core 28.2 + ScrollTrigger 17.8 + the page's own 3.5 | GSAP 3.13 from jsdelivr, pinned | Inter Tight | 3D renders: a 19 KB hero still, 24 scrub frames, a 224 KB WebM loop |
 
-- The budget in the task is 40 KB of JavaScript per page, gzipped. Options 5 and 6 use **2.3 KB** and **2.7 KB** - about 6% of the budget - and load **no external JavaScript at all**: no jQuery, no animation library, no CDN request. Everything is CSS plus the small inline block at the bottom of each file.
-- The font files are the heaviest asset. If Mayank wants the page even lighter, each page can drop to one family (option 5: Plus Jakarta Sans only, saving 16 KB; option 6: Space Grotesk only, saving 48 KB). That is the single biggest saving available and it costs one accent.
-- Both pages have no hero image, so the largest contentful paint is text.
+- The budget for the illustrated options is 80 KB of JavaScript per page, gzipped, GSAP included
+  (`scripts/tasks/05-design-illustrated.md`). All four sit inside it, at 49-59 KB. Options 2 and 3 load **no external
+  JavaScript at all**: no jQuery, no animation library, no CDN request. Everything there is CSS plus a small inline
+  block of vanilla JavaScript.
+- Options 7, 8 and 9 load **no image files at all**. Every picture is inline SVG, so the whole page is text and vectors.
+  Option 10 is the only page with image files, and every one of them is a render made for this project.
+- The font files are the heaviest asset on options 2 and 3. If Mayank wants those pages lighter, each can drop to one
+  family. That is the single biggest saving available and it costs one accent.
 
-### Lighthouse, mobile, default throttling (measured 13 November 2026)
+### Speed, measured on a throttled phone (13 November 2026)
 
-Run with Lighthouse 12.8.2 over a local HTTP server, mobile emulation (412x823), Lighthouse's default simulated Slow 4G
-and 4x CPU slowdown. The numbers are kept in `website/design-options/perf-measurements.json`, and the raw Lighthouse
-reports are not committed (they are about 800 KB each); the command that produced them is in that file too.
+Measured with `scripts/tools/cdp.js --metrics --throttle` on a 390x844 viewport with the Slow 4G profile and a 4x CPU
+slowdown. Option 7 was measured with Lighthouse 12.8.2 on the same profile, and gave the same numbers.
 
-| Page | Performance | Accessibility | Best practices | SEO | LCP (3 runs) | CLS (3 runs) | FCP | TBT | Speed index |
-|---|---|---|---|---|---|---|---|---|---|
-| **5 Flow** | 100 | 100 | 100 | 100 | **1.0 s** (0.9-1.1) | **0.001** (0.001) | same as LCP | 0 ms | same as LCP |
-| **6 Pulse** | 100 | 100 | 100 | 100 | **1.1 s** (0.9-1.1) | **0.005** (0.002-0.011) | same as LCP | 0 ms | same as LCP |
+| Page | LCP | CLS | FCP | How it was measured |
+|---|---|---|---|---|
+| 2 Warm editorial | 0.42 s | 0.016 | 0.42 s | CDP tool, mobile 390x844; the one shift is in the hero, when the webfont arrives |
+| 3 Modern wellness | 0.39 s | 0.002 | 0.39 s | CDP tool, mobile 390x844 |
+| 7 Sunrise | 0.21 s | 0.000 | 0.21 s | Lighthouse 12.8.2, mobile profile; 0.22 s and CLS 0.018 at 1440x900 |
+| 8 Qi friends | 1.5 s | 0 | 0.23 s | CDP tool, mobile 390x844; the headline is masked while its lines fly in, so the sub-line is the LCP |
+| 9 The path | 0.32 s | 0.0005 | 0.18 s | CDP tool, mobile 390x844; the scene is a fixed layer, so it costs no layout |
+| 10 Soft 3D | 0.95 s | 0.000 | 0.48 s | CDP tool, throttled phone (Slow 4G, 4x CPU) |
 
 Two things had to change to get there, and both are worth keeping:
 
 1. **The font swap was causing a layout shift of 0.107** (a whole line of the headline re-wrapped when the webfont
    arrived, pushing everything below it down). The fix is a fallback face with the same metrics: `@font-face` with
    `size-adjust` on Arial and Georgia, sized to the webfonts. The ratios were measured in Chrome on 13 November 2026
-   (`scripts/tools/font-measure.html`): Plus Jakarta Sans 105% of Arial at 400 and 101% at 700-800, Instrument Serif
-   italic 79% of Georgia, Space Grotesk 109% of Arial at 400 and 101% at 600, Inter 107% of Arial at 400 and 101% at
-   600. With the metrics matched, the swap costs almost nothing: CLS 0.001 on option 5, 0.002-0.011 on option 6 (the last of these is the headline and
-   the eyebrow letter-spacing, which no size-adjust can match exactly).
-2. **The Google Fonts stylesheet was render-blocking** and Lighthouse measured LCP 2.8 s on option 5 with it. The font
+   (`scripts/tools/font-measure.html`). With the metrics matched, the swap costs almost nothing: the measured CLS is
+   0.000 to 0.018 across the six pages.
+2. **The Google Fonts stylesheet was render-blocking**, and Lighthouse measured LCP 2.8 s on one page with it. The font
    CSS is now loaded without blocking the first paint (`rel=preload` + `media="print"` + `onload`, with a
    `<noscript>` copy for readers without JavaScript). The page paints in the fallback face straight away and the
-   webfont swaps in without moving much: LCP 1.0 s on option 5 and 1.1 s on option 6.
+   webfont swaps in without moving much. Options 7, 8 and 9 do this. Option 10 keeps the stylesheet render-blocking on
+   purpose: the headline there must not reflow when the font arrives, and the measured CLS is 0.000.
 
-Lighthouse's simulated throttling moves a little between runs, so each page was measured three times and the table
-quotes the median run with the range beside it. All three runs of both pages scored 100 in all four categories. The LCP
-element is the hero sub-line on both pages (the headline itself is masked while its words fly in, so the browser does not
-count it as a candidate).
-
-The remaining Lighthouse notes are about the demo setup, not the pages: minify CSS/JS and enable compression (the real
-build does both), and size the Unsplash images properly (the real build will hold its own images).
+The numbers move a little between runs, so each page was measured more than once and the table quotes the run that was
+kept. The remaining notes are about the demo setup, not the pages: minify CSS/JS and enable compression (the real build
+does both), and size the stock photos properly (the real build will hold its own images).
 
 ### The motion rules, and how they are kept
 
-- **Only `transform` and `opacity` animate.** The one exception is `stroke-dashoffset` on the two SVG line drawings, which is a paint-only property and causes no layout. web.dev's animations guide: "An animation that moves an element using something other than transform is likely to be slow" (https://web.dev/articles/animations-guide, read 13 November 2026).
-- **No layout shift.** Nothing animates a property that changes the size or position of other elements, and the fallback faces are metric-matched (see above). Lighthouse measures CLS 0.001 on option 5 and 0.005 (median) on option 6.
-- **No JavaScript-only content.** Every word on both pages is in the HTML. The `js` class is added in `<head>`; the hidden-until-revealed state only exists when that class is present, so with JavaScript off the page is simply the static page.
-- **`prefers-reduced-motion: reduce` turns the motion off completely.** The reduced-motion state is the full, static, complete page: no aurora drift, no word reveal, no scroll-driven drawing, no marquee, no counters, no tilt, no sticky-step dimming. Checked by screenshotting both pages with the media feature forced to `reduce`.
-- **Mobile is simplified, not broken.** The sticky story becomes a normal list under 980px, the tilt is skipped on touch devices, the aurora is smaller, and the hero type scales with `clamp()`.
+- **Only `transform` and `opacity` animate.** The one exception is `stroke-dashoffset` on the drawn lines (the dotted path on option 7, the road on option 9), which is a paint-only property and causes no layout. web.dev's animations guide: "An animation that moves an element using something other than transform is likely to be slow" (https://web.dev/articles/animations-guide, read 13 November 2026).
+- **No layout shift.** Nothing animates a property that changes the size or position of other elements, and the fallback faces are metric-matched (see above). The measured CLS is 0.000 to 0.018 across the six pages.
+- **No JavaScript-only content.** Every word is in the HTML. The `js` class is added in `<head>`; the hidden-until-revealed state only exists when that class is present, so with JavaScript off the page is simply the static page. Option 9 goes further: it says so in writing, and the landscape, the road, the walker and the first signpost all have a hand-written place in the markup.
+- **`prefers-reduced-motion: reduce` turns the motion off completely.** The reduced-motion state is the full, static, complete page: no sunrise intro, no drifting clouds, no scroll-driven drawing, no marquee, no tilt, no travelling companion. Checked by screenshotting with the media feature forced to `reduce`.
+- **Mobile is simplified, not broken.** The tilt is skipped on touch devices, the illustrations scale down, the hero type scales with `clamp()`, and the companion moves into the sticky booking bar so it can never cover a line of text.
 
 ### Accessibility and layout, checked with headless Chrome (13 November 2026)
 
-- No horizontal scroll at 390px or 1440px on any page (`scrollWidth - clientWidth = 0`, measured on all four pages at both widths).
-- One `<h1>` per page; `header`, `nav`, `main`, `footer` landmarks; a skip link to `#main`. Heading order runs h1 -> h2 -> h3 with no level skipped (the story heading moved above the story columns in options 5 and 6 in the review round).
-- Every image has an `alt` that describes what is in the picture; both images are below the fold with `loading="lazy"`; the hero is text, so there is no image in the LCP path.
+- No horizontal scroll at 390px or 1440px on any page (`scrollWidth - clientWidth = 0`, measured on all six pages at both widths).
+- One `<h1>` per page; `header`, `nav`, `main`, `footer` landmarks; a skip link to `#main`. Heading order runs h1 -> h2 -> h3 with no level skipped.
+- Every image has an `alt` that describes what is in the picture; on options 2 and 3 both images are below the fold with `loading="lazy"`. Options 7, 8 and 9 have no image files at all, only inline SVG. On option 10 the images are decorative renders next to the words, so they carry an empty `alt` and the copy beside them carries the meaning; the small hero still is the only one loaded eagerly.
 - Form: three labelled fields (`name`, `phone`, `concern`), `autocomplete` set, and a live region for the demo reply.
 - FAQ uses native `details`/`summary`, so it works without JavaScript and can be indexed.
 - Focus rings on links, buttons, inputs, textareas and `summary`.
-- Contrast, measured rather than guessed (ratio, AA needs 4.5): option 5 - ink on white 18.9, muted on white 5.9, muted on the grey section 5.5, link blue on white 8.5, white on the brand button 6.3, white on the WhatsApp button 5.4. Option 6 - ink on base 18.2, body text on base 13.2, muted on base 7.4, muted on a card 6.8, mint on base 13.4, dark text on the mint button 11.3, dark text on the WhatsApp green 8.4.
-- Lighthouse scores 100 for accessibility on options 5 and 6.
+- Contrast, measured rather than guessed (ratio, AA needs 4.5): option 7 - the text orange on cream 5.16, white on the teal band 6.20. Option 8 - ink on cream 15.2, body ink on cream 9.0, small print on cream 5.4, ink on the coral button 6.6, the sage kicker on ink 9.5, the WhatsApp button 8.4, the coral kicker 5.4, the sun kicker on the booking band 4.5. All AA.
+- Lighthouse scores 100 for accessibility on the pages it was run on, and the same checks (landmarks, heading order, form labels, focus rings, contrast) were made by hand on the ones it was not.
 
 ### How the screenshots were taken
 
@@ -674,18 +730,18 @@ DevTools Protocol through `scripts/tools/cdp.js`):
 - The page is scrolled from top to bottom first, so every scroll reveal has played, and then back to the top before the
   capture. That is why the full-page shots show the whole page and not blank sections.
 - **The 390px full-page shots are taken with the sticky WhatsApp bar hidden** (`display:none` on `.mbar`, and the body
-  padding removed). A fixed bar is painted in the middle of a full-page capture, which is what made the previous
-  `opt5-390.png` and `opt6-390.png` wrong.
+  padding removed). A fixed bar is painted in the middle of a full-page capture, which is what made the first batch of
+  phone shots wrong.
 - The `opt*-390-top.png` shots keep the bar, so they show the real phone view.
 - The `opt*-1440-mid.png` and `opt*-390-mid.png` shots are taken at the story section, where the sticky column and the
   changing steps are visible.
 
-The equivalent plain-Chrome command for a single viewport is:
+The equivalent plain-Chrome command for a single viewport is (the browser on this server is Playwright's Chromium):
 
 ```
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
-  --screenshot=shots/opt5-1440.png --window-size=1440,900 \
-  "file://$PWD/website/design-options/5/index.html"
+"/home/ubuntu/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome" --headless=new \
+  --screenshot=shots/opt7-1440.png --window-size=1440,900 \
+  "file://$PWD/website/design-options/7/index.html"
 ```
 
 ---
@@ -698,56 +754,21 @@ The equivalent plain-Chrome command for a single viewport is:
 - Dr. Grover + Mayank: decide the her-photo question (NMC Guideline 9.2) before any future page uses a photo of her.
 - Replace the stock photos with photos of the actual clinic (nobody shows a patient).
 - Decide on the form destination (WhatsApp deep link, a form service, or a Google Form for now).
-- Add `Physician` / `MedicalClinic` / `FAQPage` schema from the same config file in the real build. The `Physician` schema is already in options 5 and 6; `FAQPage` is not, because it must be generated from the same content source.
-- The site playbook at `/Users/knayam/Desktop/product/wt-social-robust/micro-products/research/websites-2026-11-08/site-playbook-v3.md` was read for this task (read-only, as the brief allows). It is written for app landing pages - one page per app, a keyword plan, a publishing cadence - so it was skipped here: it has no motion guidance, and its rules about app pages do not apply to a single local clinic homepage.
+- Add `Physician` / `MedicalClinic` / `FAQPage` schema from the same config file in the real build. The `Physician` schema is already in all six options, and `FAQPage` is in option 9; the rest has to be generated from the same content source.
+- The site playbook at `/work/distribution/micro-products/research/websites-2026-11-08/site-playbook-v3.md` was read for this task (read-only, as the brief allows). It is written for app landing pages - one page per app, a keyword plan, a publishing cadence - so it was skipped here: it has no motion guidance, and its rules about app pages do not apply to a single local clinic homepage.
 
 ---
 
 ## Review notes
 
-### Round 1 (reviewer, 13 November 2026) - `strategy/reviews/motion-r1.md`
-
-The reviewer checked all the deliverables, re-measured the JavaScript, checked the contrast ratios by hand and marked
-the pages clean on the medical side. Ten findings. Here is what was done about each one:
-
-1. **Option 5's sticky story did not stick (major).** The column was 772px tall inside a 752px constraint rectangle, so
-   Chrome dropped the offset and painted it at its flow position. Fixed: the photo is now `clamp(140px, 18vh, 240px)`,
-   the column is capped at `max-height: calc(100vh - 104px)` with `overflow-y: auto` and `overscroll-behavior: contain`,
-   and it sticks at `top: 88px`. Measured after the fix: the photo's top edge sits at 88px at 1440x900 and at 1366x768,
-   and it stays pinned for the length of the story column. See `shots/opt5-1440-mid.png`.
-2. **Option 6's H1 was an outcome claim (major).** "She treats the condition she lives with." contradicted the FAQ on
-   the same page. Now "A doctor who knows MS from the inside.", with the og:description changed to match and
-   "support, never a cure" kept in the sub-line.
-3. **No AI source mark (major).** Guideline 7.2 requires it. All four footers now carry the block from
-   `strategy/plan.md` section 4.2, worded as *pending* because Dr. Grover has not read the copy. The old
-   "Medical content reviewed by Dr. Shruti Grover - Last updated 13 November 2026" line asserted a review that has not
-   happened; it now says "Medical review pending - Design draft, 13 November 2026".
-4. **The 390px full-page shots were wrong (major).** The fixed WhatsApp bar was painted in the middle of the page.
-   All the shots were retaken; the 390px full-page shots are now taken with the bar hidden, and the notes above say so.
-5. **"One config place" was not true (medium).** Three `setText()` calls matched nothing and the location strings were
-   copied around the file. Now every address, hospital and hours string on all four pages reads from the `CLINIC`
-   object, the JSON-LD is rewritten from it on options 5 and 6, and section 4 lists exactly what is config-driven and
-   what is still hand-written copy.
-6. **Unsourced popularity claims (medium).** "The problems she is asked about most often", two "Most asked about"
-   tags and the counter "areas of care she is asked about most" are not in the brief and have no source. Now: "the
-   common reasons people come in", the tags say what the condition is, and the counter says "areas of care listed on
-   this page".
-7. **LCP and CLS were asserted, not measured (medium).** Lighthouse 12.8.2, mobile, default throttling, three
-   runs each: option 5 LCP 1.0 s (median) / CLS 0.001, option 6 LCP 1.1 s / CLS 0.005, all four category scores 100 in
-   every run. Two real problems came
-   out of the measurement and were fixed: a 0.107 layout shift from the font swap (fixed with metric-matched fallback
-   faces) and a render-blocking font stylesheet that put option 5's LCP at 2.8 s (fixed by loading the font CSS without
-   blocking the first paint). The method and the numbers are in section 5.
-8. **Option 6's heading order (minor).** The story `<h2>` now comes above the story columns. The same fix was applied to
-   option 5, which had the same h3-before-h2 problem.
-9. **The Review notes section was empty (minor).** This section.
-10. **Research artefacts were untracked and uncited (minor).** `research/mobbin/` (11 Mobbin captures) is now committed
-    and cited in the research table in section 1, and the round summary `scripts/logs/motion-w1.txt` is committed too.
-    A `.gitignore` now keeps the raw run logs and the Lighthouse reports out of the tree.
+Each option was built, opened in a browser, filmed, and then fixed. What was found is written down under each option:
+what broke, why it broke, and what the number was after the fix. The rule is the same for all of them - a page is not
+finished until it has been looked at in the browser at 390px and at 1440px, with the motion running and with the motion
+switched off.
 
 ### Option 7 - Sunrise (writer's own check, 13 November 2026)
 
-Option 7 was built and checked on the same day, after the review round above. What was found and fixed, in the order it was
+Option 7 was built and checked on the same day. What was found and fixed, in the order it was
 found (the numbers were measured with `scripts/tools/cdp.js --metrics --throttle`, the Lighthouse mobile profile):
 
 1. **The first phone screen did not fit.** The scene, the headline and the Book button all have to be inside 390x844. The
@@ -779,6 +800,70 @@ found (the numbers were measured with `scripts/tools/cdp.js --metrics --throttle
 12. **The first recording was 3 fps.** Headless Chrome was launched with `--disable-gpu`, which throttled the screencast.
     Without that flag the same script records about 20 fps, and the final files are 399 frames (390px) and 496 frames
     (1440px).
+
+14. **The still frames were taken with `Page.captureScreenshot`, which lands a second or two late.** That is why every
+    early screenshot showed the intro already finished. The frames are now cut out of the finished video at the exact
+    second, timed from a marker the page writes when the intro starts (`window.__introT`). `ffmpeg -ss` on the
+    variable-frame-rate recording landed on the wrong frame (the 2 s and 4 s stills of the 1440 s run were already
+    scrolled), so the stills are cut with `select=gte(t,T)` instead: it decodes in order and takes the first frame at or
+    after the wanted second. In the round-2 recordings the 0 s frame is the first frame of the intro (the sun is still a
+    pale disc low in the sky), the 1 s frame has the sun up with its face and the clouds in place, the 2 s frame has the
+    sparkles and the birds, and the 4 s frame is the idle loop.
+15. **The first scroll-through started while the intro was still playing**, so the video never showed the intro properly.
+    The recorder now waits for the intro marker, lets the whole 4 s intro play, and only then scrolls.
+16. **The page flashed with the sun already up before the animation began**, because the first frame of the intro was set
+    by GSAP, which arrives from the CDN a moment after the first paint. The first frame is now drawn in CSS (`html.js`
+    rules) so the page and the timeline start from exactly the same place.
+17. **The wide multiple-sclerosis card had a small character floating in a lot of white space.** On that card the character
+    now floats to the right and the copy has the room.
+
+
+18. **Checked without JavaScript and with reduced motion.** With script execution disabled the page still reads as a
+    normal page: the sun is up, the headline is in place, every word is there (the intro's first frame is drawn in CSS, and
+    the `js` class is never added, so nothing can be left hidden). With `prefers-reduced-motion: reduce` every timeline,
+    loop and travel is skipped, the marquee stops, the breathe disc holds still, and the illustrations stay where they are.
+    Both were taken with headless Chrome (`scripts/tools/cdp.js --reduce`, and a run with
+    `Emulation.setScriptExecutionDisabled`).
+
+### Option 7 - Sunrise, round 2 (writer, 13 November 2026, after `strategy/reviews/opt7-r1.md`)
+
+The reviewer's round-1 findings (`strategy/reviews/opt7-r1.md`) were fixed one at a time, the page was re-shot and the
+recordings were re-cut. Only `website/design-options/7/` and `shots/opt7-*` were touched.
+
+1. **Her name and her qualifications were missing on every phone.** One rule (`.brand span{display:none}` under 430px)
+   hid the whole text block, in the header *and* in the footer, so a 390px visitor saw an orange disc with no name and no
+   degrees. The rule now hides only the tagline, the header is a little smaller on a phone so the name and the Book
+   button both fit, and the footer block wraps instead of being cut off. The footer brand link also got an
+   `aria-label`, because it had no accessible name of its own.
+2. **Text colours failed WCAG AA.** `#E85D18` on cream measured 3.26:1 and the white copy on the teal band measured
+   3.29:1. Text orange is now `#B2470F` (5.16:1 on cream) and the breathe band is `#2C6B62` (white 6.20:1, body copy
+   5.24:1). The bright orange and the mid teal are still used for fills.
+3. **The sparkles were all drawn in the top-left corner of the hero.** `transform-box: fill-box` on an SVG shape makes
+   the browser measure GSAP's transform origin from the shape a second time, so every scaled shape jumped to the origin
+   of the drawing: a white sliver sat on the yellow field and the four sparkles were never seen. The rule is gone, GSAP
+   sets the sparkles' first frame, and they now sit where they were designed (`shots/opt7-390-top.png`).
+4. **The still frames did not prove the motion** (item 14 above). All ten stills were cut again with `select=gte(t,T)`
+   and looked at against the two videos.
+5. **A link said WhatsApp and dialled the phone.** The line under the hero button now reads "Or call +91 76691 40719"
+   and is a `tel:` link, so the label and the link agree.
+6. **The form threw a ReferenceError when the GSAP CDN was blocked**, because the submit handler called GSAP before the
+   GSAP guard. The call is guarded now, and the form was checked with the CDN blocked: the message shows, no errors.
+7. **"NMC registered" was not a safe label** - she may be registered with the State Medical Council. It now reads
+   "Registered medical practitioner (NMC / State Medical Council)", and the number sits in the `CLINIC` config object
+   (`regNumber`) so it is one edit when she sends it.
+8. **The companion was hidden from screen readers but still clickable.** It is a labelled link now, and its bubble is
+   marked as a status message.
+9. **The line under the location cards started with a full stop on a new line** on a phone, because the paragraph was a
+   flex row. It is ordinary text again.
+10. **The "SUPPORT, NOT A CURE" tag sat on top of the sun character** on the wide multiple-sclerosis card from 620px up.
+    The rule that moves that tag back into the text flow was written before the rule that pins it to the corner, and
+    they have the same weight, so the corner rule won. The tag now has the higher specificity and the card reads as
+    tag, heading, copy, with the character on the right.
+
+Checked again after the fixes: no JavaScript errors at 390x844 or 1440x900, no broken anchors, no duplicate ids, no
+horizontal scroll at either width, and the name, the degrees and the booking buttons are all there in the header, in the
+credentials band and in the footer. The full-page screenshots are taken after a scroll through the page, because the
+sections that rise in on scroll would otherwise be captured empty.
 
 Still open, on purpose:
 
@@ -829,13 +914,60 @@ Still open, on purpose:
   a promotional line, and guideline 8.1.xii is about ratings; leaving it off is the safer side to be wrong on.
 
 
+### Option 10 - Soft 3D (writer's own check, 13 November 2026)
+
+The first pass of option 10 already had the structure, the copy and the first 3D renders. The pass below is what was
+found by actually looking at the page and the recordings, and fixed before the final screenshots were taken.
+
+1. **Every condition tile had lost its text.** `.tile-art` is a `<span>`, and a `<span>` is an inline box, so the
+   `width`/`height` on it did nothing: the image inside was 100% of the tile and pushed the description and the
+   tag out of the card, which had `overflow:hidden`. On a phone only the heading survived. The art is now a block box
+   and the tile is a flex column.
+2. **Two headings were invisible on the dark band.** `.evidence-card b` was `var(--ink)` - near-black on a
+   near-black card, so "For pain" and "On safety" could not be read. The dark band now sets its own colours.
+3. **The companion's halo looked like a scratch on the lens.** In the first render the halo was a hair-thin white
+   torus floating above the head, and the crop cut its top, so it read as a stray hair. It is now a thick ring that
+   sits on the head, like the Bevel orb in `research/mobbin/ios-bevel-orb-character-checkin.webp`, and the crop box is
+   measured on the raw render (every pixel that is not the flat key colour) instead of on the keyed image, so a thin
+   bright edge can never be cut off.
+4. **The first-visit scene was a white slab.** The table-top scene was built on a cream lathe that filled the bottom
+   half of the frame. It is now a soft lilac round mat, and the companion's halo in that scene was hidden behind its
+   head, so it was raised and opened out.
+5. **The hero was an empty box for the first half second.** The intro faded the headline, the lede and the buttons in
+   from `opacity:0`, so the page painted empty and the largest element was not painted until the animation had run.
+   The text is now painted on the first frame and only moves with a transform. Measured after the change on a
+   throttled phone (Slow 4G, 4x CPU): **LCP 0.95 s, CLS 0.000, FCP 0.48 s**.
+6. **The first motion recording caught an empty hero.** `opt10-motion-390-f0s.png` showed nothing but the header and
+   the sticky bar, because the recording started a fraction before the intro began. The page now writes
+   `window.__introT` so the recorder can time the still frames, and the intro starts with the first paint.
+7. **The brand wrapped to two lines on a 390px phone**, because the header button and the brand together were wider
+   than the row. The button and the brand are now a little smaller below 480px.
+8. **The scrub frames had no camera travel on a phone.** The scene now jumps to the frame of the step you are on,
+   the progress bar fills as you scroll, and the label says which step you are on.
+9. **Three tiles did not read.** The migraine tile was a plain egg (its ring was hidden behind the orb), the joint
+   tile was two balls with a "sausage" behind them, and the certificate was a lavender blob. They are now an orb
+   inside two visible rings, a bent joint between two bone ends, and a rolled scroll with a paper and a gold seal.
+10. **The video loop could not be used on the page.** ffmpeg on this server cannot mux a VP9 alpha channel into WebM
+    (the muxer does not write the alpha flag, and Chrome then paints the video opaque), and an animated WebP of the
+    same 6 second loop came out at 2.5 MB. The hero therefore uses the still plus a CSS float, and the 6 second WebM
+    (224 KB) ships as the loop export. The real 3D motion on the page is the 24 frame scroll-scrubbed scene.
+
+Checked and needing no change: no horizontal scroll at 390px or 1440px (`scrollWidth - clientWidth = 0`), one
+`<h1>`, headings in order (h1 to h4), every word in the HTML, the page reads completely with JavaScript switched
+off, `prefers-reduced-motion: reduce` holds every animation still and keeps every picture in place, the WhatsApp
+and phone links are all built from the one `CLINIC` object, and there is no cure claim, no price, no testimonial and
+no photograph of her anywhere on the page.
+
+
 ### Notes for the next reviewer
 
-- The Lighthouse numbers come from a local HTTP server (`python3 -m http.server`), not from GitHub Pages. Real hosting
-  adds TLS and CDN time, so treat 0.9 s as a floor, not a promise.
+- The speed numbers come from a local file or a local HTTP server (`python3 -m http.server`), not from GitHub Pages.
+  Real hosting adds TLS and CDN time, so treat the fastest number as a floor, not a promise.
 - The `size-adjust` fallback ratios were measured against Arial and Georgia on macOS. On Windows and Android the
   fallback family falls back to the same local fonts (Arial, Liberation Sans, Georgia, Times New Roman), which have
   near-identical metrics, but it is worth one check on a Windows machine.
-- The sticky story still has a short travel window (the story column is about 1,000px tall and the sticky column 630px),
-  so it pins for roughly a third of the section. If Mayank wants it to pin for the whole story, the photo and panel
-  need to move to the right-hand column.
+- Option 9's scene is a fixed layer, so on a short screen the text cards can cover the walker for a few seconds while a
+  long card is on screen. The walker always has the left third of the desktop layout to itself; on a phone it is the
+  lower part of the screen, under the card.
+- The registration number on every page is still a placeholder ("NMC registered - Registration number to be added"),
+  and the form on every page is a demo that sends nothing.
